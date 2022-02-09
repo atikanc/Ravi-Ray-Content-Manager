@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Projectname:</strong>
+  <%= @project.ProjectName %>
+</p>
+
+<p>
+  <strong>Projectlink:</strong>
+  <%= @project.ProjectLink %>
+</p>
+
+<p>
+  <strong>Projectowner:</strong>
+  <%= @project.ProjectOwner %>
+</p>
+
+<p>
+  <strong>Projectstart:</strong>
+  <%= @project.ProjectStart %>
+</p>
+
+<p>
+  <strong>Projectend:</strong>
+  <%= @project.ProjectEnd %>
+</p>
+
+<p>
+  <strong>Projectdescription:</strong>
+  <%= @project.ProjectDescription %>
+</p>
+
+<p>
+  <strong>Projectcover:</strong>
+  <%= link_to @project.ProjectCover.filename, @project.ProjectCover if @project.ProjectCover.attached? %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

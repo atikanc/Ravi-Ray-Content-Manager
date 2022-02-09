@@ -1,0 +1,2 @@
+class Awarded < ApplicationRecord
+end

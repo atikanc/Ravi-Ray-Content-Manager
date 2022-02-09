@@ -1,0 +1,22 @@
+<%= form_with(model: awarded) do |form| %>
+  <% if awarded.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(awarded.errors.count, "error") %> prohibited this awarded from being saved:</h2>
+
+      <ul>
+        <% awarded.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :AwardedDate %>
+    <%= form.text_field :AwardedDate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

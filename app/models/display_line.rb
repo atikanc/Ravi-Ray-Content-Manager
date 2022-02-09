@@ -1,0 +1,2 @@
+class DisplayLine < ApplicationRecord
+end

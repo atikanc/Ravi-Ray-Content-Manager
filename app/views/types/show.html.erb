@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Typename:</strong>
+  <%= @type.TypeName %>
+</p>
+
+<p>
+  <strong>Typeicon:</strong>
+  <%= link_to @type.TypeIcon.filename, @type.TypeIcon if @type.TypeIcon.attached? %>
+</p>
+
+<%= link_to 'Edit', edit_type_path(@type) %> |
+<%= link_to 'Back', types_path %>

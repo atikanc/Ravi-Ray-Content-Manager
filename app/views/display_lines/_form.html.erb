@@ -1,0 +1,32 @@
+<%= form_with(model: display_line) do |form| %>
+  <% if display_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(display_line.errors.count, "error") %> prohibited this display_line from being saved:</h2>
+
+      <ul>
+        <% display_line.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ComponentContributed %>
+    <%= form.text_field :ComponentContributed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ComponentStartDate %>
+    <%= form.date_select :ComponentStartDate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ComponentEndDate %>
+    <%= form.date_select :ComponentEndDate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

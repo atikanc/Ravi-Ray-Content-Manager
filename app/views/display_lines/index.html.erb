@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Componentcontributed</th>
-      <th>Componentstartdate</th>
-      <th>Componentenddate</th>
-      <th>Contribprojectid</th>
-      <th>Contribtype</th>
+      <th>Component Contributed</th>
+      <th>Component Start Date</th>
+      <th>Component End Date</th>
+      <th>Contributed Project</th>
+      <th>Contributed Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,8 +20,8 @@
         <td><%= display_line.ComponentContributed %></td>
         <td><%= display_line.ComponentStartDate %></td>
         <td><%= display_line.ComponentEndDate %></td>
-        <td><%= display_line.ContribProjectID %></td>
-        <td><%= display_line.ContribType %></td>
+        <td><%= Project.find(display_line.ContribProject).ProjectName %></td>
+        <td><%= Contribution.find(display_line.ContribType).ContributionType %></td>
         <td><%= link_to 'Show', display_line %></td>
         <td><%= link_to 'Edit', edit_display_line_path(display_line) %></td>
         <td><%= link_to 'Destroy', display_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,3 +33,4 @@
 <br>
 
 <%= link_to 'New Display Line', new_display_line_path %>
+<%= link_to 'Back', projects_path %>

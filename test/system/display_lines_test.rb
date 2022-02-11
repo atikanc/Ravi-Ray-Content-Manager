@@ -17,6 +17,8 @@ class DisplayLinesTest < ApplicationSystemTestCase
     fill_in "Componentcontributed", with: @display_line.ComponentContributed
     fill_in "Componentenddate", with: @display_line.ComponentEndDate
     fill_in "Componentstartdate", with: @display_line.ComponentStartDate
+    fill_in "Contribprojectid", with: @display_line.ContribProjectID
+    fill_in "Contribtype", with: @display_line.ContribType
     click_on "Create Display line"
 
     assert_text "Display line was successfully created"
@@ -30,6 +32,8 @@ class DisplayLinesTest < ApplicationSystemTestCase
     fill_in "Componentcontributed", with: @display_line.ComponentContributed
     fill_in "Componentenddate", with: @display_line.ComponentEndDate
     fill_in "Componentstartdate", with: @display_line.ComponentStartDate
+    fill_in "Contribprojectid", with: @display_line.ContribProjectID
+    fill_in "Contribtype", with: @display_line.ContribType
     click_on "Update Display line"
 
     assert_text "Display line was successfully updated"

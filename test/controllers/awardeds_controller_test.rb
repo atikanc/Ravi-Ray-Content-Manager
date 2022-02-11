@@ -17,7 +17,7 @@ class AwardedsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create awarded" do
     assert_difference('Awarded.count') do
-      post awardeds_url, params: { awarded: { AwardedDate: @awarded.AwardedDate } }
+      post awardeds_url, params: { awarded: { AwardID: @awarded.AwardID, AwardedDate: @awarded.AwardedDate, ProjectID: @awarded.ProjectID } }
     end
 
     assert_redirected_to awarded_url(Awarded.last)
@@ -34,7 +34,7 @@ class AwardedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update awarded" do
-    patch awarded_url(@awarded), params: { awarded: { AwardedDate: @awarded.AwardedDate } }
+    patch awarded_url(@awarded), params: { awarded: { AwardID: @awarded.AwardID, AwardedDate: @awarded.AwardedDate, ProjectID: @awarded.ProjectID } }
     assert_redirected_to awarded_url(@awarded)
   end
 

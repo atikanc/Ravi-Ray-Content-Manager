@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_223808) do
+ActiveRecord::Schema.define(version: 2022_02_10_222749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,40 @@ ActiveRecord::Schema.define(version: 2022_02_09_223808) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "awardeds", force: :cascade do |t|
+    t.date "AwardedDate"
+    t.integer "AwardID"
+    t.integer "ProjectID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "awards", force: :cascade do |t|
+    t.string "AwardName"
+    t.text "AwardLink"
+    t.date "AwardYear"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contributions", force: :cascade do |t|
+    t.string "ContributionType"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "display_lines", force: :cascade do |t|
+    t.string "ComponentContributed"
+    t.date "ComponentStartDate"
+    t.date "ComponentEndDate"
+    t.bigint "contributions_id"
+    t.bigint "projects_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contributions_id"], name: "index_display_lines_on_contributions_id"
+    t.index ["projects_id"], name: "index_display_lines_on_projects_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "ProjectName"
     t.text "ProjectLink"
@@ -50,6 +84,11 @@ ActiveRecord::Schema.define(version: 2022_02_09_223808) do
     t.date "ProjectStart"
     t.date "ProjectEnd"
     t.text "ProjectDescription"
+    t.integer "ContributionID"
+    t.integer "DisplayLineID"
+    t.integer "AwardedID"
+    t.integer "AwardID"
+    t.integer "TypeID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

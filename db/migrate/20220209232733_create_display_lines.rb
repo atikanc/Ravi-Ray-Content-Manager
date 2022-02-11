@@ -5,6 +5,9 @@ class CreateDisplayLines < ActiveRecord::Migration[6.1]
       t.date :ComponentStartDate
       t.date :ComponentEndDate
 
+      t.belongs_to :contributions
+      t.belongs_to :projects
+
       t.timestamps
     end
   end

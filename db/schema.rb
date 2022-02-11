@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_222749) do
+ActiveRecord::Schema.define(version: 2022_02_11_013314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,12 @@ ActiveRecord::Schema.define(version: 2022_02_10_222749) do
     t.date "AwardedDate"
     t.integer "AwardID"
     t.integer "ProjectID"
+    t.bigint "awards_id"
+    t.bigint "projects_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["awards_id"], name: "index_awardeds_on_awards_id"
+    t.index ["projects_id"], name: "index_awardeds_on_projects_id"
   end
 
   create_table "awards", force: :cascade do |t|
@@ -69,12 +73,10 @@ ActiveRecord::Schema.define(version: 2022_02_10_222749) do
     t.string "ComponentContributed"
     t.date "ComponentStartDate"
     t.date "ComponentEndDate"
-    t.bigint "contributions_id"
-    t.bigint "projects_id"
+    t.integer "ContribProjectID"
+    t.integer "ContribType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["contributions_id"], name: "index_display_lines_on_contributions_id"
-    t.index ["projects_id"], name: "index_display_lines_on_projects_id"
   end
 
   create_table "projects", force: :cascade do |t|

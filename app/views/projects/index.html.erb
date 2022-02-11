@@ -12,7 +12,7 @@
       <th>End Date</th>
       <th>Description</th>
       <th>Cover</th>
-      <th>Type ID</th>
+      <th>Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,7 +27,7 @@
         <td><%= project.ProjectEnd %></td>
         <td><%= project.ProjectDescription %></td>
         <td><%= project.ProjectCover %></td>
-        <td><%= project.TypeID %></td>
+        <td><%= Type.find(project.TypeID).TypeName %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -46,7 +46,7 @@
 <br>
 <%= link_to 'Awards', awards_path %>
 <br>
-<%= link_to 'Types', types_path %>
+<%= link_to 'Project Awards', awardeds_path %>
 <br>
 <%= link_to 'Display Lines', display_lines_path %>
 

@@ -53,7 +53,7 @@
 
   <div class="field">
     <%= form.label :DisplayLineID %>
-    <%= form.number_field :DisplayLineID %>
+    <%= form.select :DisplayLineID, DisplayLine.order(:ComponentContributed).map { |displayline| [displayline.ComponentContributed, displayline.id] }, include_blank: true, id: "id_of_the_displayline_id_select_box" %>
   </div>
 
   <div class="field">

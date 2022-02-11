@@ -65,6 +65,6 @@ class DisplayLinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def display_line_params
-      params.require(:display_line).permit(:ComponentContributed, :ComponentStartDate, :ComponentEndDate, :ContribProjectID, :ContribType)
+      params.require(:display_line).permit(:ComponentContributed, :ComponentStartDate, :ComponentEndDate, :ContribProject, :ContribType)
     end
 end

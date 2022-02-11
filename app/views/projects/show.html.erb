@@ -7,7 +7,7 @@
 
 <p>
   <strong>Project Link:</strong>
-  <%= @project.ProjectLink %>
+  <%= link_to "Link", @project.ProjectLink %>
 </p>
 
 <p>
@@ -36,14 +36,23 @@
 </p>
 
 <p>
-  <strong>Display Line:</strong>
-  <%= Contribution.find(DisplayLine.find(@project.DisplayLineID).id).ContributionType %>
-  <%= DisplayLine.find(@project.DisplayLineID).ComponentContributed %>
+  <strong>Contribution Line:</strong>
+  <br>
+  <ul>
+  <% DisplayLine.where(ContribProject: @project.id).find_each do |displayline| %>
+    <li><%= Contribution.find(displayline.ContribType).ContributionType %> - <%= displayline.ComponentContributed %></li>
+  <% end %>
+  </ul>
 </p>
 
 <p>
   <strong>Awarded:</strong>
-  <%= @project.AwardedID %>
+  <br>
+  <ul>
+  <% Awarded.where(ProjectID: @project.id).find_each do |awarded| %>
+    <li><%= Award.find(awarded.AwardID).AwardName %></li>
+  <% end %>
+  </ul>
 </p>
 
 <p>

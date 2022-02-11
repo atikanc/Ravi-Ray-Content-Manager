@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_02_11_013314) do
     t.string "ComponentContributed"
     t.date "ComponentStartDate"
     t.date "ComponentEndDate"
-    t.integer "ContribProjectID"
+    t.integer "ContribProject"
     t.integer "ContribType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -86,10 +86,6 @@ ActiveRecord::Schema.define(version: 2022_02_11_013314) do
     t.date "ProjectStart"
     t.date "ProjectEnd"
     t.text "ProjectDescription"
-    t.integer "ContributionID"
-    t.integer "DisplayLineID"
-    t.integer "AwardedID"
-    t.integer "AwardID"
     t.integer "TypeID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

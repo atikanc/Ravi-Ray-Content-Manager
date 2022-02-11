@@ -8,6 +8,8 @@
       <th>Componentcontributed</th>
       <th>Componentstartdate</th>
       <th>Componentenddate</th>
+      <th>Contribprojectid</th>
+      <th>Contribtype</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +20,8 @@
         <td><%= display_line.ComponentContributed %></td>
         <td><%= display_line.ComponentStartDate %></td>
         <td><%= display_line.ComponentEndDate %></td>
+        <td><%= display_line.ContribProjectID %></td>
+        <td><%= display_line.ContribType %></td>
         <td><%= link_to 'Show', display_line %></td>
         <td><%= link_to 'Edit', edit_display_line_path(display_line) %></td>
         <td><%= link_to 'Destroy', display_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>

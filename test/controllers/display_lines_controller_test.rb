@@ -17,7 +17,7 @@ class DisplayLinesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create display_line" do
     assert_difference('DisplayLine.count') do
-      post display_lines_url, params: { display_line: { ComponentContributed: @display_line.ComponentContributed, ComponentEndDate: @display_line.ComponentEndDate, ComponentStartDate: @display_line.ComponentStartDate } }
+      post display_lines_url, params: { display_line: { ComponentContributed: @display_line.ComponentContributed, ComponentEndDate: @display_line.ComponentEndDate, ComponentStartDate: @display_line.ComponentStartDate, ContribProjectID: @display_line.ContribProjectID, ContribType: @display_line.ContribType } }
     end
 
     assert_redirected_to display_line_url(DisplayLine.last)
@@ -34,7 +34,7 @@ class DisplayLinesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update display_line" do
-    patch display_line_url(@display_line), params: { display_line: { ComponentContributed: @display_line.ComponentContributed, ComponentEndDate: @display_line.ComponentEndDate, ComponentStartDate: @display_line.ComponentStartDate } }
+    patch display_line_url(@display_line), params: { display_line: { ComponentContributed: @display_line.ComponentContributed, ComponentEndDate: @display_line.ComponentEndDate, ComponentStartDate: @display_line.ComponentStartDate, ContribProjectID: @display_line.ContribProjectID, ContribType: @display_line.ContribType } }
     assert_redirected_to display_line_url(@display_line)
   end
 

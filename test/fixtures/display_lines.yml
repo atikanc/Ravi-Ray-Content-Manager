@@ -2,10 +2,14 @@
 
 one:
   ComponentContributed: MyString
-  ComponentStartDate: 2022-02-09
-  ComponentEndDate: 2022-02-09
+  ComponentStartDate: 2022-02-11
+  ComponentEndDate: 2022-02-11
+  ContribProjectID: 1
+  ContribType: 1
 
 two:
   ComponentContributed: MyString
-  ComponentStartDate: 2022-02-09
-  ComponentEndDate: 2022-02-09
+  ComponentStartDate: 2022-02-11
+  ComponentEndDate: 2022-02-11
+  ContribProjectID: 1
+  ContribType: 1

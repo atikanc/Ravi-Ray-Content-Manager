@@ -46,24 +46,6 @@
     <%= form.file_field :ProjectCover %>
   </div>
 
-  <div class="field">
-    <%= form.label :ContributionID %>
-    <%= form.number_field :ContributionID %>
-  </div>
-
-  <div class="field">
-    <%= form.label :DisplayLineID %>
-    <%= form.select :DisplayLineID, DisplayLine.order(:ComponentContributed).map { |displayline| [displayline.ComponentContributed, displayline.id] }, include_blank: true, id: "id_of_the_displayline_id_select_box" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :AwardedID %>
-    <%= form.number_field :AwardedID %>
-  </div>
-
-  <div class="field">
-    <%= form.label :AwardID %>
-    <%= form.number_field :AwardID %>
   </div>
 
   <div class="field">

@@ -1,7 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  AwardedDate: MyString
+  AwardedDate: 2022-02-10
+  AwardID: 1
+  ProjectID: 1
 
 two:
-  AwardedDate: MyString
+  AwardedDate: 2022-02-10
+  AwardID: 1
+  ProjectID: 1

@@ -26,6 +26,16 @@
     <%= form.date_select :ComponentEndDate %>
   </div>
 
+  <div class="field">
+    <%= form.label :ContribProjectID %>
+    <%= form.select :ContribProjectID, Project.order(:ProjectName).map { |project| [project.ProjectName, project.id] }, include_blank: true, id: "id_of_the_project_id_select_box" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ContribType %>
+    <%= form.select :ContribType, Contribution.order(:ContributionType).map { |contribution| [contribution.ContributionType, contribution.id] }, include_blank: true, id: "id_of_the_contribution_id_select_box" %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

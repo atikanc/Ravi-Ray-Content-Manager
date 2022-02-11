@@ -1,38 +1,54 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Projectname:</strong>
+  <strong>Project Name:</strong>
   <%= @project.ProjectName %>
 </p>
 
 <p>
-  <strong>Projectlink:</strong>
+  <strong>Project Link:</strong>
   <%= @project.ProjectLink %>
 </p>
 
 <p>
-  <strong>Projectowner:</strong>
+  <strong>Project Owner:</strong>
   <%= @project.ProjectOwner %>
 </p>
 
 <p>
-  <strong>Projectstart:</strong>
+  <strong>Project Start:</strong>
   <%= @project.ProjectStart %>
 </p>
 
 <p>
-  <strong>Projectend:</strong>
+  <strong>Project End:</strong>
   <%= @project.ProjectEnd %>
 </p>
 
 <p>
-  <strong>Projectdescription:</strong>
+  <strong>Project Description:</strong>
   <%= @project.ProjectDescription %>
 </p>
 
 <p>
-  <strong>Projectcover:</strong>
+  <strong>Project Cover:</strong>
   <%= link_to @project.ProjectCover.filename, @project.ProjectCover if @project.ProjectCover.attached? %>
+</p>
+
+<p>
+  <strong>Display Line:</strong>
+  <%= Contribution.find(DisplayLine.find(@project.DisplayLineID).id).ContributionType %>
+  <%= DisplayLine.find(@project.DisplayLineID).ComponentContributed %>
+</p>
+
+<p>
+  <strong>Awarded:</strong>
+  <%= @project.AwardedID %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= Type.find(@project.TypeID).TypeName %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

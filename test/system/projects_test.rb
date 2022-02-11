@@ -14,12 +14,17 @@ class ProjectsTest < ApplicationSystemTestCase
     visit projects_url
     click_on "New Project"
 
+    fill_in "Awardid", with: @project.AwardID
+    fill_in "Awardedid", with: @project.AwardedID
+    fill_in "Contributionid", with: @project.ContributionID
+    fill_in "Displaylineid", with: @project.DisplayLineID
     fill_in "Projectdescription", with: @project.ProjectDescription
     fill_in "Projectend", with: @project.ProjectEnd
     fill_in "Projectlink", with: @project.ProjectLink
     fill_in "Projectname", with: @project.ProjectName
     fill_in "Projectowner", with: @project.ProjectOwner
     fill_in "Projectstart", with: @project.ProjectStart
+    fill_in "Typeid", with: @project.TypeID
     click_on "Create Project"
 
     assert_text "Project was successfully created"
@@ -30,12 +35,17 @@ class ProjectsTest < ApplicationSystemTestCase
     visit projects_url
     click_on "Edit", match: :first
 
+    fill_in "Awardid", with: @project.AwardID
+    fill_in "Awardedid", with: @project.AwardedID
+    fill_in "Contributionid", with: @project.ContributionID
+    fill_in "Displaylineid", with: @project.DisplayLineID
     fill_in "Projectdescription", with: @project.ProjectDescription
     fill_in "Projectend", with: @project.ProjectEnd
     fill_in "Projectlink", with: @project.ProjectLink
     fill_in "Projectname", with: @project.ProjectName
     fill_in "Projectowner", with: @project.ProjectOwner
     fill_in "Projectstart", with: @project.ProjectStart
+    fill_in "Typeid", with: @project.TypeID
     click_on "Update Project"
 
     assert_text "Project was successfully updated"

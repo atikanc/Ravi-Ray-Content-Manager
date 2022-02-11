@@ -27,8 +27,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :ContribProjectID %>
-    <%= form.select :ContribProjectID, Project.order(:ProjectName).map { |project| [project.ProjectName, project.id] }, include_blank: true, id: "id_of_the_project_id_select_box" %>
+    <%= form.label :ContribProject %>
+    <%= form.select :ContribProject, Project.order(:ProjectName).map { |project| [project.ProjectName, project.id] }, include_blank: true, id: "id_of_the_project_id_select_box" %>
   </div>
 
   <div class="field">

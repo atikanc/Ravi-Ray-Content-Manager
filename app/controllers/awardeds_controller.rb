@@ -4,6 +4,11 @@ class AwardedsController < ApplicationController
   # GET /awardeds or /awardeds.json
   def index
     @awardeds = Awarded.all
+    @projects = Project.all
+    @types = Type.all
+    @awards = Award.all
+    @display_lines = DisplayLine.all
+    @contributions = Contribution.all
   end
 
   # GET /awardeds/1 or /awardeds/1.json
@@ -65,6 +70,6 @@ class AwardedsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def awarded_params
-      params.require(:awarded).permit(:AwardedDate)
+      params.require(:awarded).permit(:AwardedDate, :AwardID, :ProjectID)
     end
 end

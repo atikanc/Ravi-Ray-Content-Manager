@@ -35,5 +35,30 @@
   <%= link_to @project.ProjectCover.filename, @project.ProjectCover if @project.ProjectCover.attached? %>
 </p>
 
+<p>
+  <strong>Contributionid:</strong>
+  <%= @project.ContributionID %>
+</p>
+
+<p>
+  <strong>Displaylineid:</strong>
+  <%= @project.DisplayLineID %>
+</p>
+
+<p>
+  <strong>Awardedid:</strong>
+  <%= @project.AwardedID %>
+</p>
+
+<p>
+  <strong>Awardid:</strong>
+  <%= @project.AwardID %>
+</p>
+
+<p>
+  <strong>Typeid:</strong>
+  <%= Type.find(@project.TypeID).TypeName %>
+</p>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

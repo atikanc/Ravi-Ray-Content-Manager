@@ -16,8 +16,8 @@
     <% @awardeds.each do |awarded| %>
       <tr>
         <td><%= awarded.AwardedDate %></td>
-        <td><%= awarded.AwardID %></td>
-        <td><%= awarded.ProjectID %></td>
+        <td><%= Award.find(awarded.AwardID).AwardName %></td>
+        <td><%= Project.find(awarded.ProjectID).ProjectName %></td>
         <td><%= link_to 'Show', awarded %></td>
         <td><%= link_to 'Edit', edit_awarded_path(awarded) %></td>
         <td><%= link_to 'Destroy', awarded, method: :delete, data: { confirm: 'Are you sure?' } %></td>

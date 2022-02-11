@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
   has_one_attached :ProjectCover
-  has_one :Type
+  validates :TypeID, presence: true
+  has_one :Contribution, through: :DisplayLine
 end

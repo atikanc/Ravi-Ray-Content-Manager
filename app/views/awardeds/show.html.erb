@@ -5,5 +5,15 @@
   <%= @awarded.AwardedDate %>
 </p>
 
+<p>
+  <strong>Awardid:</strong>
+  <%= @awarded.AwardID %>
+</p>
+
+<p>
+  <strong>Projectid:</strong>
+  <%= @awarded.ProjectID %>
+</p>
+
 <%= link_to 'Edit', edit_awarded_path(@awarded) %> |
 <%= link_to 'Back', awardeds_path %>

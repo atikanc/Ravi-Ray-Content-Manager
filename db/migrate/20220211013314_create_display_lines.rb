@@ -4,7 +4,7 @@ class CreateDisplayLines < ActiveRecord::Migration[6.1]
       t.string :ComponentContributed
       t.date :ComponentStartDate
       t.date :ComponentEndDate
-      t.integer :ContribProjectID
+      t.integer :ContribProject
       t.integer :ContribType
 
       t.timestamps

@@ -47,8 +47,28 @@
   </div>
 
   <div class="field">
-    <%= form.text_field :Type %>
-    <%= form.select :Type, Type.TypeName.keys %>
+    <%= form.label :ContributionID %>
+    <%= form.number_field :ContributionID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :DisplayLineID %>
+    <%= form.select :DisplayLineID, DisplayLine.order(:ComponentContributed).map { |displayline| [displayline.ComponentContributed, displayline.id] }, include_blank: true, id: "id_of_the_displayline_id_select_box" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :AwardedID %>
+    <%= form.number_field :AwardedID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :AwardID %>
+    <%= form.number_field :AwardID %>
+  </div>
+
+  <div class="field">
+    <%= form.label :TypeID %>
+    <%= form.select :TypeID, Type.order(:TypeName).map { |type| [type.TypeName, type.id] }, include_blank: true, id: "id_of_the_type_id_select_box" %>
   </div>
 
   <div class="actions">

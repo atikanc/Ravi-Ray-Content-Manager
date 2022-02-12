@@ -19,13 +19,11 @@ RSpec.describe Type, type: :model do
 RSpec.describe Awarded, type: :model do
   subject do
     described_class.new(AwardedDate: '2022-02-14', AwardID: 1, ProjectID: 1)
-  end
-
+  
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
-
-  #check date
+    #check date
   it 'is not valid without a date' do
     subject.AwardedDate = nil
     expect(subject).not_to be_valid
@@ -94,3 +92,32 @@ RSpec.describe DisplayLine, type: :model do
       expect(subject).not_to be_valid
     end
   end
+
+  RSpec.describe Award, type: :model do
+  subject do
+    described_class.new(AwardName: 'Test Award', AwardLink: 'award.com', AwardYear: '2022-02-14')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without a name' do
+    subject.AwardName = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a year' do
+    subject.AwardYear = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is valid with a name' do
+    expect(subject).to be_valid
+  end
+
+  it 'is valid with a year' do
+    expect(subject).to be_valid
+  end
+
+end

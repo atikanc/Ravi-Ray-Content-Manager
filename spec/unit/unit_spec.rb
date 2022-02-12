@@ -36,12 +36,10 @@ RSpec.describe Award, type: :model do
   end
 
   it 'is valid with a name' do
-    subject.AwardName = 'Test Award'
     expect(subject).to be_valid
   end
 
   it 'is valid with a year' do
-    subject.AwardYear = '2022-02-14'
     expect(subject).to be_valid
   end
 

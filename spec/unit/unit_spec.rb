@@ -25,16 +25,19 @@ RSpec.describe Awarded, type: :model do
     expect(subject).to be_valid
   end
 
+  #check date
   it 'is not valid without a date' do
     subject.AwardedDate = nil
     expect(subject).not_to be_valid
   end
 
+  #check Award ID
   it 'is not valid without a award id' do
     subject.AwardID = nil
     expect(subject).not_to be_valid
   end
 
+  #check Project ID
   it 'is not valid without a project id' do
     subject.ProjectID = nil
     expect(subject).not_to be_valid

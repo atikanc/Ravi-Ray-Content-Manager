@@ -19,7 +19,8 @@ RSpec.describe Type, type: :model do
 RSpec.describe Awarded, type: :model do
   subject do
     described_class.new(AwardedDate: '2022-02-14', AwardID: 1, ProjectID: 1)
-  
+  end
+
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
@@ -93,7 +94,7 @@ RSpec.describe DisplayLine, type: :model do
     end
   end
 
-  RSpec.describe Award, type: :model do
+RSpec.describe Award, type: :model do
   subject do
     described_class.new(AwardName: 'Test Award', AwardLink: 'award.com', AwardYear: '2022-02-14')
   end

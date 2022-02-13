@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Creating a type', type: :feature do
     scenario 'valid inputs' do
       visit new_type_path
-      fill_in 'Typename', with: 'Music'
+      fill_in 'type_TypeName', with: 'Music'
       click_on 'Create Type'
       visit types_path
       expect(page).to have_content('Music')
@@ -14,8 +14,8 @@ end
 RSpec.describe 'Creating an award', type: :feature do
   scenario 'valid awards' do
     visit new_award_path
-    fill_in 'Awardname', with: 'Test Award'
-    fill_in 'Awardlink', with: 'test.com'
+    fill_in 'award_AwardName', with: 'Test Award'
+    fill_in 'award_AwardLink', with: 'test.com'
     select '2022', :from => 'award_AwardYear_1i'
     select 'February', :from => 'award_AwardYear_2i'
     select '12', :from => 'award_AwardYear_3i'
@@ -31,14 +31,14 @@ RSpec.describe 'Creating an awarded', type: :feature do
   scenario 'valid inputs' do
     #create type
     visit new_type_path
-    fill_in 'Typename', with: 'Music'
+    fill_in 'type_TypeName', with: 'Music'
     click_on 'Create Type'
     visit types_path
     expect(page).to have_content('Music')
     
     #create project
     visit new_project_path
-    fill_in 'Projectname', with: 'Cool Song'
+    fill_in 'project_ProjectName', with: 'Cool Song'
     select 'Music', :from => 'project[TypeID]'
     click_on 'Create Project'
     visit projects_path
@@ -46,7 +46,7 @@ RSpec.describe 'Creating an awarded', type: :feature do
 
     #create award
     visit new_award_path
-    fill_in 'Awardname', with: 'Coolest Song'
+    fill_in 'award_AwardName', with: 'Coolest Song'
     select 2022, :from => 'award[AwardYear(1i)]'
     select 'February', :from => 'award[AwardYear(2i)]'
     select 14, :from => 'award[AwardYear(3i)]'
@@ -72,16 +72,16 @@ RSpec.describe 'Creating a project', type: :feature do
   scenario 'valid inputs' do
       # make music type
       visit new_type_path
-      fill_in 'Typename', with: 'Music'
+      fill_in 'type_TypeName', with: 'Music'
       click_on 'Create Type'
       visit types_path
       expect(page).to have_content('Music')
 
       visit new_project_path
-      fill_in 'Projectname', with: 'projectname1'
-      fill_in 'Projectlink', with: 'projectlink1'
-      fill_in 'Projectowner', with: 'projectowner1'
-      fill_in 'Projectdescription', with: 'projectdescription1'
+      fill_in 'project_ProjectName', with: 'projectname1'
+      fill_in 'project_ProjectLink', with: 'projectlink1'
+      fill_in 'project_ProjectOwner', with: 'projectowner1'
+      fill_in 'project_ProjectDescription', with: 'projectdescription1'
       select 2017, :from => 'project[ProjectStart(1i)]'
       select 'January', :from => 'project[ProjectStart(2i)]'
       select 30, :from => 'project[ProjectStart(3i)]'
@@ -107,17 +107,17 @@ RSpec.describe 'Creating a display line', type: :feature do
     scenario 'valid inputs' do
       # make music type
       visit new_type_path
-      fill_in 'Typename', with: 'Music'
+      fill_in 'type_TypeName', with: 'Music'
       click_on 'Create Type'
       visit types_path
       expect(page).to have_content('Music')
 
       # make project
       visit new_project_path
-      fill_in 'Projectname', with: 'projectname1'
-      fill_in 'Projectlink', with: 'projectlink1'
-      fill_in 'Projectowner', with: 'projectowner1'
-      fill_in 'Projectdescription', with: 'projectdescription1'
+      fill_in 'project_ProjectName', with: 'projectname1'
+      fill_in 'project_ProjectLink', with: 'projectlink1'
+      fill_in 'project_ProjectOwner', with: 'projectowner1'
+      fill_in 'project_ProjectDescription', with: 'projectdescription1'
       select 2017, :from => 'project[ProjectStart(1i)]'
       select 'January', :from => 'project[ProjectStart(2i)]'
       select 30, :from => 'project[ProjectStart(3i)]'
@@ -129,11 +129,11 @@ RSpec.describe 'Creating a display line', type: :feature do
 
       # make contribution type
       visit new_contribution_path
-      fill_in 'Contributiontype', with: 'contributiontype'
+      fill_in 'contribution_ContributionType', with: 'contributiontype'
       click_on 'Create Contribution'
 
       visit new_display_line_path
-      fill_in 'Componentcontributed', with: 'something1'
+      fill_in 'display_line_ComponentContributed', with: 'something1'
       select 2017, :from => 'display_line[ComponentStartDate(1i)]'
       select 'January', :from => 'display_line[ComponentStartDate(2i)]'
       select 30, :from => 'display_line[ComponentStartDate(3i)]'
@@ -155,7 +155,7 @@ RSpec.describe 'Creating a display line', type: :feature do
   RSpec.describe 'Creating a contribution type', type: :feature do
     scenario 'valid inputs' do
       visit new_contribution_path
-      fill_in 'Contributiontype', with: 'Bao Type'
+      fill_in 'contribution_ContributionType', with: 'Bao Type'
       click_on 'Create Contribution'
       visit contributions_path
       expect(page).to have_content('Bao Type')

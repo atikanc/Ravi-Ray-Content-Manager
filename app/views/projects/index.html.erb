@@ -5,13 +5,14 @@
 <table>
   <thead>
     <tr>
-      <th>Projectname</th>
-      <th>Projectlink</th>
-      <th>Projectowner</th>
-      <th>Projectstart</th>
-      <th>Projectend</th>
-      <th>Projectdescription</th>
-      <th>Projectcover</th>
+      <th>Name</th>
+      <th>Link</th>
+      <th>Owner</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Description</th>
+      <th>Cover</th>
+      <th>Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= project.ProjectEnd %></td>
         <td><%= project.ProjectDescription %></td>
         <td><%= project.ProjectCover %></td>
+        <td><%= Type.find(project.TypeID).TypeName %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -37,3 +39,14 @@
 <br>
 
 <%= link_to 'New Project', new_project_path %>
+<br>
+<%= link_to 'Types', types_path %>
+<br>
+<%= link_to 'Contributions', contributions_path %>
+<br>
+<%= link_to 'Awards', awards_path %>
+<br>
+<%= link_to 'Project Awards', awardeds_path %>
+<br>
+<%= link_to 'Display Lines', display_lines_path %>
+

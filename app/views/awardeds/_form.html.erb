@@ -12,8 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :AwardedDate %>
-    <%= form.text_field :AwardedDate %>
+    <%= form.label :AwardedDate, 'Date Awarded' %>
+    <%= form.date_select :AwardedDate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :AwardID, 'Award Name' %>
+    <%= form.select :AwardID, Award.order(:AwardName).map { |award| [award.AwardName, award.id] }, include_blank: true, id: "id_of_the_award_id_select_box" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ProjectID, 'Project Name' %>
+    <%= form.select :ProjectID, Project.order(:ProjectName).map { |project| [project.ProjectName, project.id] }, include_blank: true, id: "id_of_the_project_id_select_box" %>
   </div>
 
   <div class="actions">

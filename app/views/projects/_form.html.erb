@@ -12,43 +12,45 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :ProjectName %>
+    <%= form.label :ProjectName, 'Project Name' %>
     <%= form.text_field :ProjectName %>
   </div>
 
   <div class="field">
-    <%= form.label :ProjectLink %>
+    <%= form.label :ProjectLink, 'Link to Project' %>
     <%= form.text_area :ProjectLink %>
   </div>
 
   <div class="field">
-    <%= form.label :ProjectOwner %>
+    <%= form.label :ProjectOwner, 'Project Owner' %>
     <%= form.text_field :ProjectOwner %>
   </div>
 
   <div class="field">
-    <%= form.label :ProjectStart %>
+    <%= form.label :ProjectStart, 'Start Date' %>
     <%= form.date_select :ProjectStart %>
   </div>
 
   <div class="field">
-    <%= form.label :ProjectEnd %>
+    <%= form.label :ProjectEnd, 'End Date' %>
     <%= form.date_select :ProjectEnd %>
   </div>
 
   <div class="field">
-    <%= form.label :ProjectDescription %>
+    <%= form.label :ProjectDescription, 'Description' %>
     <%= form.text_area :ProjectDescription %>
   </div>
 
   <div class="field">
-    <%= form.label :ProjectCover %>
+    <%= form.label :ProjectCover, 'Project Cover' %>
     <%= form.file_field :ProjectCover %>
   </div>
 
+  </div>
+
   <div class="field">
-    <%= form.text_field :Type %>
-    <%= form.select :Type, Type.TypeName.keys %>
+    <%= form.label :TypeID, 'Project Type' %>
+    <%= form.select :TypeID, Type.order(:TypeName).map { |type| [type.TypeName, type.id] }, include_blank: true, id: "id_of_the_type_id_select_box" %>
   </div>
 
   <div class="actions">

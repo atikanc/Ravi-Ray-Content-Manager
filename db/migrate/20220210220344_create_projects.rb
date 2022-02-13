@@ -7,6 +7,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.date :ProjectStart
       t.date :ProjectEnd
       t.text :ProjectDescription
+      t.integer :TypeID
 
       t.timestamps
     end

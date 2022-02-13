@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Awardeds</h1>
+<h1>Awarded Projects</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Awardeddate</th>
+      <th>Date Awarded</th>
+      <th>Award ID</th>
+      <th>Project ID</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +16,8 @@
     <% @awardeds.each do |awarded| %>
       <tr>
         <td><%= awarded.AwardedDate %></td>
+        <td><%= Award.find(awarded.AwardID).AwardName %></td>
+        <td><%= Project.find(awarded.ProjectID).ProjectName %></td>
         <td><%= link_to 'Show', awarded %></td>
         <td><%= link_to 'Edit', edit_awarded_path(awarded) %></td>
         <td><%= link_to 'Destroy', awarded, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Awarded', new_awarded_path %>
+<%= link_to 'Award Project', new_awarded_path %>
+<%= link_to 'Back', projects_path %>

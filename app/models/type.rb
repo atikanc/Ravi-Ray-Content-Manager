@@ -1,4 +1,5 @@
 class Type < ApplicationRecord
   has_one_attached :TypeIcon
-  belongs_to :Project
+  has_many :projects
+  validates :TypeName, presence: true
 end

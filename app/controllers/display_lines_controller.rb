@@ -1,5 +1,5 @@
 class DisplayLinesController < ApplicationController
-  before_action :set_display_line, only: %i[ show edit update destroy ]
+  before_action :set_display_line, only: %i[show edit update destroy]
 
   # GET /display_lines or /display_lines.json
   def index
@@ -7,8 +7,7 @@ class DisplayLinesController < ApplicationController
   end
 
   # GET /display_lines/1 or /display_lines/1.json
-  def show
-  end
+  def show; end
 
   # GET /display_lines/new
   def new
@@ -16,8 +15,7 @@ class DisplayLinesController < ApplicationController
   end
 
   # GET /display_lines/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /display_lines or /display_lines.json
   def create
@@ -25,11 +23,11 @@ class DisplayLinesController < ApplicationController
 
     respond_to do |format|
       if @display_line.save
-        format.html { redirect_to display_line_url(@display_line), notice: "Display line was successfully created." }
-        format.json { render :show, status: :created, location: @display_line }
+        format.html { redirect_to(display_line_url(@display_line), notice: 'Display line was successfully created.') }
+        format.json { render(:show, status: :created, location: @display_line) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @display_line.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @display_line.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,11 +36,11 @@ class DisplayLinesController < ApplicationController
   def update
     respond_to do |format|
       if @display_line.update(display_line_params)
-        format.html { redirect_to display_line_url(@display_line), notice: "Display line was successfully updated." }
-        format.json { render :show, status: :ok, location: @display_line }
+        format.html { redirect_to(display_line_url(@display_line), notice: 'Display line was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @display_line) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @display_line.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @display_line.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -52,19 +50,20 @@ class DisplayLinesController < ApplicationController
     @display_line.destroy
 
     respond_to do |format|
-      format.html { redirect_to display_lines_url, notice: "Display line was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(display_lines_url, notice: 'Display line was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_display_line
-      @display_line = DisplayLine.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def display_line_params
-      params.require(:display_line).permit(:ComponentContributed, :ComponentStartDate, :ComponentEndDate, :ContribProject, :ContribType)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_display_line
+    @display_line = DisplayLine.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def display_line_params
+    params.require(:display_line).permit(:ComponentContributed, :ComponentStartDate, :ComponentEndDate, :ContribProject, :ContribType)
+  end
 end

@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/csce431/Ravi-Ray-Content-Manager/spec/feature/integration_spec.rb": {
+      "/RRA/spec/feature/integration_spec.rb": {
         "lines": [
           null,
           1,
@@ -169,7 +169,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/spec/rails_helper.rb": {
+      "/RRA/spec/rails_helper.rb": {
         "lines": [
           null,
           1,
@@ -237,7 +237,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/environment.rb": {
+      "/RRA/config/environment.rb": {
         "lines": [
           null,
           1,
@@ -246,7 +246,7 @@
           1
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/application.rb": {
+      "/RRA/config/application.rb": {
         "lines": [
           1,
           null,
@@ -272,7 +272,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/boot.rb": {
+      "/RRA/config/boot.rb": {
         "lines": [
           1,
           null,
@@ -280,7 +280,7 @@
           1
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/environments/test.rb": {
+      "/RRA/config/environments/test.rb": {
         "lines": [
           1,
           null,
@@ -344,7 +344,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/application_controller_renderer.rb": {
+      "/RRA/config/initializers/application_controller_renderer.rb": {
         "lines": [
           null,
           null,
@@ -356,7 +356,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/assets.rb": {
+      "/RRA/config/initializers/assets.rb": {
         "lines": [
           null,
           null,
@@ -374,7 +374,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/backtrace_silencers.rb": {
+      "/RRA/config/initializers/backtrace_silencers.rb": {
         "lines": [
           null,
           null,
@@ -386,7 +386,7 @@
           1
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/content_security_policy.rb": {
+      "/RRA/config/initializers/content_security_policy.rb": {
         "lines": [
           null,
           null,
@@ -420,7 +420,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/cookies_serializer.rb": {
+      "/RRA/config/initializers/cookies_serializer.rb": {
         "lines": [
           null,
           null,
@@ -429,7 +429,7 @@
           1
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/filter_parameter_logging.rb": {
+      "/RRA/config/initializers/filter_parameter_logging.rb": {
         "lines": [
           null,
           null,
@@ -439,7 +439,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/inflections.rb": {
+      "/RRA/config/initializers/inflections.rb": {
         "lines": [
           null,
           null,
@@ -459,7 +459,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/mime_types.rb": {
+      "/RRA/config/initializers/mime_types.rb": {
         "lines": [
           null,
           null,
@@ -467,7 +467,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/permissions_policy.rb": {
+      "/RRA/config/initializers/permissions_policy.rb": {
         "lines": [
           null,
           null,
@@ -482,7 +482,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/initializers/wrap_parameters.rb": {
+      "/RRA/config/initializers/wrap_parameters.rb": {
         "lines": [
           null,
           null,
@@ -500,7 +500,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/config/routes.rb": {
+      "/RRA/config/routes.rb": {
         "lines": [
           1,
           1,
@@ -516,49 +516,49 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/application_helper.rb": {
+      "/RRA/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/awardeds_helper.rb": {
+      "/RRA/app/helpers/awardeds_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/awards_helper.rb": {
+      "/RRA/app/helpers/awards_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/contributions_helper.rb": {
+      "/RRA/app/helpers/contributions_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/display_lines_helper.rb": {
+      "/RRA/app/helpers/display_lines_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/projects_helper.rb": {
+      "/RRA/app/helpers/projects_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/helpers/types_helper.rb": {
+      "/RRA/app/helpers/types_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/spec/unit/unit_spec.rb": {
+      "/RRA/spec/unit/unit_spec.rb": {
         "lines": [
           null,
           1,
@@ -701,7 +701,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/type.rb": {
+      "/RRA/app/models/type.rb": {
         "lines": [
           1,
           1,
@@ -710,41 +710,21 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/application_record.rb": {
+      "/RRA/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/contribution.rb": {
+      "/RRA/app/models/contribution.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/awarded.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/project.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/display_line.rb": {
+      "/RRA/app/models/awarded.rb": {
         "lines": [
           1,
           1,
@@ -755,7 +735,37 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/models/award.rb": {
+      "/RRA/app/models/project.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          5,
+          4,
+          4,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/RRA/app/models/display_line.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/RRA/app/models/award.rb": {
         "lines": [
           1,
           1,
@@ -764,7 +774,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/types_controller.rb": {
+      "/RRA/app/controllers/types_controller.rb": {
         "lines": [
           1,
           1,
@@ -838,13 +848,13 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/application_controller.rb": {
+      "/RRA/app/controllers/application_controller.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/awards_controller.rb": {
+      "/RRA/app/controllers/awards_controller.rb": {
         "lines": [
           1,
           1,
@@ -918,7 +928,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/projects_controller.rb": {
+      "/RRA/app/controllers/projects_controller.rb": {
         "lines": [
           1,
           1,
@@ -997,7 +1007,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/awardeds_controller.rb": {
+      "/RRA/app/controllers/awardeds_controller.rb": {
         "lines": [
           1,
           1,
@@ -1076,7 +1086,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/contributions_controller.rb": {
+      "/RRA/app/controllers/contributions_controller.rb": {
         "lines": [
           1,
           1,
@@ -1150,7 +1160,7 @@
           null
         ]
       },
-      "/csce431/Ravi-Ray-Content-Manager/app/controllers/display_lines_controller.rb": {
+      "/RRA/app/controllers/display_lines_controller.rb": {
         "lines": [
           1,
           1,
@@ -1225,6 +1235,6 @@
         ]
       }
     },
-    "timestamp": 1644783941
+    "timestamp": 1645803830
   }
 }

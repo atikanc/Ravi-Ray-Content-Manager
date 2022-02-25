@@ -21,7 +21,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.ProjectName %></td>
-        <td><%= project.ProjectLink %></td>
+        <td><%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %> </td>
         <td><%= project.ProjectOwner %></td>
         <td><%= project.ProjectStart %></td>
         <td><%= project.ProjectEnd %></td>

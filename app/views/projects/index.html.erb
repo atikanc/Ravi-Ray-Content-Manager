@@ -5,28 +5,30 @@
 <table>
   <thead>
     <tr>
+      <th>Cover</th>
       <th>Name</th>
       <th>Link</th>
       <th>Owner</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Description</th>
-      <th>Cover</th>
+      <th>Production Date</th>
       <th>Type</th>
-      <th colspan="3"></th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @projects.each do |project| %>
       <tr>
+        <td>
+          <% if project.ProjectCover.representable? %>
+            <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
+          <% else %>
+            <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
+          <% end %>
+        </td>
         <td><%= project.ProjectName %></td>
         <td><%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %> </td>
         <td><%= project.ProjectOwner %></td>
-        <td><%= project.ProjectStart %></td>
         <td><%= project.ProjectEnd %></td>
-        <td><%= project.ProjectDescription %></td>
-        <td><%= project.ProjectCover %></td>
         <td><%= Type.find(project.TypeID).TypeName %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>

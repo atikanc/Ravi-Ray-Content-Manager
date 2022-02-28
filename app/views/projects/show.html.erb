@@ -32,16 +32,22 @@
 
 <p>
   <strong>Project Cover:</strong>
-  <%= link_to @project.ProjectCover.filename, @project.ProjectCover if @project.ProjectCover.attached? %>
-</p>
+  <% if @project.ProjectCover.representable? %>
+    <%= image_tag @project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
+    <%= link_to @project.ProjectCover.filename, @project.ProjectCover if @project.ProjectCover.attached? %>
+  <% else %>
+    <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
+    <%= link_to "PlaceHolder Image", "https://via.placeholder.com/100" %>
+  <% end %>
+  </p>
 
 <p>
   <strong>Contribution Line:</strong>
   <br>
   <ul>
-  <% DisplayLine.where(ContribProject: @project.id).find_each do |displayline| %>
-    <li><%= Contribution.find(displayline.ContribType).ContributionType %> - <%= displayline.ComponentContributed %></li>
-  <% end %>
+    <% @contrib.each do |con| %>
+      <li><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></li>
+    <% end %>
   </ul>
 </p>
 

@@ -11,8 +11,8 @@ RSpec.describe 'Creating a type', type: :feature do
     end
 end
 
-RSpec.describe 'Creating an award', type: :feature do
-  scenario 'valid awards' do
+RSpec.describe('Creating an award', type: :feature) do
+  it 'valid awards' do
     visit new_award_path
     fill_in 'award_AwardName', with: 'Test Award'
     fill_in 'award_AwardLink', with: 'test.com'
@@ -21,9 +21,9 @@ RSpec.describe 'Creating an award', type: :feature do
     select '12', :from => 'award_AwardYear_3i'
     click_on 'Create Award'
     visit awards_path
-    expect(page).to have_content("Test Award")
-    expect(page).to have_content("test.com")
-    expect(page).to have_content("2022-02-12")
+    expect(page).to(have_content('Test Award'))
+    expect(page).to(have_content('test.com'))
+    expect(page).to(have_content('2022-02-12'))
   end
 end
 

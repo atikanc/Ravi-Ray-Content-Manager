@@ -1,1 +1,1 @@
-json.partial! "contributions/contribution", contribution: @contribution
+json.partial!('contributions/contribution', contribution: @contribution)

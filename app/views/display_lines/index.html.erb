@@ -20,8 +20,8 @@
         <td><%= display_line.ComponentContributed %></td>
         <td><%= display_line.ComponentStartDate %></td>
         <td><%= display_line.ComponentEndDate %></td>
-        <td><%= Project.find(display_line.ContribProject).ProjectName %></td>
-        <td><%= Contribution.find(display_line.ContribType).ContributionType %></td>
+        <td><%= display_line.Project.ProjectName %></td>
+        <td><%= display_line.Contribution.ContributionType %></td>
         <td><%= link_to 'Show', display_line %></td>
         <td><%= link_to 'Edit', edit_display_line_path(display_line) %></td>
         <td><%= link_to 'Destroy', display_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>

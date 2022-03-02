@@ -12,7 +12,9 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1 or /projects/1.json
-  def show; end
+  def show
+    @contrib = DisplayLine.where(Project: @project)
+  end
 
   # GET /projects/new
   def new
@@ -53,6 +55,14 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1 or /projects/1.json
   def destroy
     @project.destroy
+
+    DisplayLine.where(Project: @project.id).find_each do |dl|
+      dl.destroy
+    end
+
+    Awarded.where(ProjectID: @project.id).find_each do |ad|
+      ad.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to(projects_url, notice: 'Project was successfully destroyed.') }

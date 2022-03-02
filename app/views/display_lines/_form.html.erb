@@ -12,28 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :ComponentContributed %>
+    <%= form.label :ComponentContributed, 'Component Contributed' %>
     <%= form.text_field :ComponentContributed %>
   </div>
 
   <div class="field">
-    <%= form.label :ComponentStartDate %>
+    <%= form.label :ComponentStartDate, 'Start Date' %>
     <%= form.date_select :ComponentStartDate %>
   </div>
 
   <div class="field">
-    <%= form.label :ComponentEndDate %>
+    <%= form.label :ComponentEndDate, 'End Date' %>
     <%= form.date_select :ComponentEndDate %>
   </div>
 
   <div class="field">
-    <%= form.label :ContribProject %>
-    <%= form.select :ContribProject, Project.order(:ProjectName).map { |project| [project.ProjectName, project.id] }, include_blank: true, id: "id_of_the_project_id_select_box" %>
-  </div>
+    <%= form.label :Project, 'Select Project' %>
+    <%= form.collection_select :Project_id, Project.order(:ProjectName),:id,:ProjectName, include_blank: true %>
+    </div>
 
   <div class="field">
-    <%= form.label :ContribType %>
-    <%= form.select :ContribType, Contribution.order(:ContributionType).map { |contribution| [contribution.ContributionType, contribution.id] }, include_blank: true, id: "id_of_the_contribution_id_select_box" %>
+    <%= form.label :Contribution, 'Select Contribution Type' %>
+    <%= form.collection_select :Contribution_id, Contribution.order(:ContributionType),:id,:ContributionType, include_blank: true %>
   </div>
 
   <div class="actions">

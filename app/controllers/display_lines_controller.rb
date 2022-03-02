@@ -7,7 +7,8 @@ class DisplayLinesController < ApplicationController
   end
 
   # GET /display_lines/1 or /display_lines/1.json
-  def show; end
+  def show
+  end
 
   # GET /display_lines/new
   def new
@@ -15,7 +16,8 @@ class DisplayLinesController < ApplicationController
   end
 
   # GET /display_lines/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /display_lines or /display_lines.json
   def create
@@ -56,14 +58,13 @@ class DisplayLinesController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_display_line
+      @display_line = DisplayLine.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_display_line
-    @display_line = DisplayLine.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def display_line_params
-    params.require(:display_line).permit(:ComponentContributed, :ComponentStartDate, :ComponentEndDate, :ContribProject, :ContribType)
-  end
+    # Only allow a list of trusted parameters through.
+    def display_line_params
+      params.require(:display_line).permit(:ComponentContributed, :ComponentStartDate, :ComponentEndDate, :Project_id, :Contribution_id)
+    end
 end

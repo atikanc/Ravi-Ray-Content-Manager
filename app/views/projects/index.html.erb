@@ -17,6 +17,12 @@
     </tr>
   </thead>
 
+  <%= form_tag projects_path, :method => 'get' do %>
+    <%= collection_select :project, :TypeID, Type.all, :id, :TypeName, prompt: true %>
+    <%= submit_tag "look" %>
+  <% end %>
+
+
   <tbody>
     <% @projects.each do |project| %>
       <tr>
@@ -36,8 +42,8 @@
   </tbody>
 </table>
 
+
 <br>
-<'This will be a button'>
 <%= link_to 'New Project', new_project_path %>
 <br>
 <%= link_to 'Types', types_path %>

@@ -96,7 +96,7 @@ RSpec.describe 'Creating a project', type: :feature do
       expect(page).to have_content('2021')
       expect(page).to have_content('29')
       expect(page).to have_content('projectname1')
-      expect(page).to have_content('projectlink1')
+      expect(page).to have_link(href: 'http://projectlink1')
       expect(page).to have_content('projectowner1')
       expect(page).to have_content('projectdescription1')
       expect(page).to have_content('Music')

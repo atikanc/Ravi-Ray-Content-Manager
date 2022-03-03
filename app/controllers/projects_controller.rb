@@ -3,12 +3,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
-    @types = Type.all
-    @awardeds = Awarded.all
-    @awards = Award.all
-    @display_lines = DisplayLine.all
-    @contributions = Contribution.all
+    @projects = Project.search(params[:search])
+    
   end
 
   # GET /projects/1 or /projects/1.json

@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   validates :TypeID, presence: true
   has_many :display_lines
   has_many :contributions, through: :display_lines
-
+  belongs_to :type
   # From https://stackoverflow.com/questions/36038646/string-interpolation-to-external-link-without-http
   # For Input Sanitization
   def ProjectLink=(url)

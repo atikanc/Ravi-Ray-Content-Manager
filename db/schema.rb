@@ -70,15 +70,13 @@ ActiveRecord::Schema.define(version: 2022_02_11_013314) do
   end
 
   create_table "display_lines", force: :cascade do |t|
-    t.bigint "Project_id"
-    t.bigint "Contribution_id"
     t.string "ComponentContributed"
     t.date "ComponentStartDate"
     t.date "ComponentEndDate"
+    t.integer "ContribProject"
+    t.integer "ContribType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["Contribution_id"], name: "index_display_lines_on_Contribution_id"
-    t.index ["Project_id"], name: "index_display_lines_on_Project_id"
   end
 
   create_table "projects", force: :cascade do |t|

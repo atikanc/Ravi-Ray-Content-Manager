@@ -115,25 +115,24 @@ RSpec.describe Award, type: :model do
   end
 
   it 'is valid with valid attributes' do
-    expect(subject).to be_valid
+    expect(subject).to(be_valid)
   end
 
   it 'is not valid without a name' do
     subject.AwardName = nil
-    expect(subject).not_to be_valid
+    expect(subject).not_to(be_valid)
   end
 
   it 'is not valid without a year' do
     subject.AwardYear = nil
-    expect(subject).not_to be_valid
+    expect(subject).not_to(be_valid)
   end
 
   it 'is valid with a name' do
-    expect(subject).to be_valid
+    expect(subject).to(be_valid)
   end
 
   it 'is valid with a year' do
-    expect(subject).to be_valid
+    expect(subject).to(be_valid)
   end
 end
-

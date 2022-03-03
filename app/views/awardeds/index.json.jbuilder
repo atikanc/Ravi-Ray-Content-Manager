@@ -1,1 +1,1 @@
-json.array! @awardeds, partial: "awardeds/awarded", as: :awarded
+json.array!(@awardeds, partial: 'awardeds/awarded', as: :awarded)

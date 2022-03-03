@@ -1,1 +1,1 @@
-json.partial! "display_lines/display_line", display_line: @display_line
+json.partial!('display_lines/display_line', display_line: @display_line)

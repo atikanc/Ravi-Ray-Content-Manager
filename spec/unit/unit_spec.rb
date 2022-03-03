@@ -76,7 +76,10 @@ RSpec.describe Project, type: :model do
 
 RSpec.describe DisplayLine, type: :model do
     subject do
-      described_class.new(ComponentContributed: 'a', ComponentStartDate: Date.current, ComponentEndDate: Date.current, ContribProject: 1, ContribType: 2)
+      described_class.new(ComponentContributed: 'a', ComponentStartDate: Date.current, 
+        ComponentEndDate: Date.current, 
+        Project: Project.new(ProjectName: 'a', ProjectLink: 'b', TypeID: '1'), 
+        Contribution: Contribution.new(ContributionType: 'Mixed'))
     end
   
     it 'is valid with valid attributes' do
@@ -99,12 +102,12 @@ RSpec.describe DisplayLine, type: :model do
     end
 
     it 'is not valid without a contribution project' do
-      subject.ContribProject = nil
+      subject.Project = nil
       expect(subject).not_to be_valid
     end
 
     it 'is not valid without a contribution type' do
-      subject.ContribType = nil
+      subject.Contribution = nil
       expect(subject).not_to be_valid
     end
   end

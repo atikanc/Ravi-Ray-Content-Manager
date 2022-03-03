@@ -1,14 +1,10 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
-    @types = Type.all
-    @awardeds = Awarded.all
-    @awards = Award.all
-    @display_lines = DisplayLine.all
-    @contributions = Contribution.all
+    @projects = Project.search(params[:search])
+    
   end
 
   # GET /projects/1 or /projects/1.json
@@ -22,8 +18,7 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /projects or /projects.json
   def create
@@ -31,11 +26,11 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
-        format.json { render :show, status: :created, location: @project }
+        format.html { redirect_to(project_url(@project), notice: 'Project was successfully created.') }
+        format.json { render(:show, status: :created, location: @project) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @project.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -44,11 +39,11 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
-        format.json { render :show, status: :ok, location: @project }
+        format.html { redirect_to(project_url(@project), notice: 'Project was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @project) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @project.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -66,19 +61,22 @@ class ProjectsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(projects_url, notice: 'Project was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def project_params
-      params.require(:project).permit(:ProjectName, :ProjectLink, :ProjectOwner, :ProjectStart, :ProjectEnd, :ProjectDescription, :ProjectCover, :ContributionID, :DisplayLineID, :AwardedID, :AwardID, :TypeID)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def project_params
+    params.require(:project).permit(:ProjectName, :ProjectLink, :ProjectOwner, :ProjectStart, :ProjectEnd, :ProjectDescription, :ProjectCover,
+                                    :ContributionID, :DisplayLineID, :AwardedID, :AwardID, :TypeID
+    )
+  end
 end

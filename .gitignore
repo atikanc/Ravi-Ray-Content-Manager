@@ -51,3 +51,5 @@ yarn-debug.log*
 
 /config/master.key
 .env
+
+/coverage

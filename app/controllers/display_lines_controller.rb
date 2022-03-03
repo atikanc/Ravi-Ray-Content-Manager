@@ -1,5 +1,5 @@
 class DisplayLinesController < ApplicationController
-  before_action :set_display_line, only: %i[ show edit update destroy ]
+  before_action :set_display_line, only: %i[show edit update destroy]
 
   # GET /display_lines or /display_lines.json
   def index
@@ -25,11 +25,11 @@ class DisplayLinesController < ApplicationController
 
     respond_to do |format|
       if @display_line.save
-        format.html { redirect_to display_line_url(@display_line), notice: "Display line was successfully created." }
-        format.json { render :show, status: :created, location: @display_line }
+        format.html { redirect_to(display_line_url(@display_line), notice: 'Display line was successfully created.') }
+        format.json { render(:show, status: :created, location: @display_line) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @display_line.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @display_line.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,11 +38,11 @@ class DisplayLinesController < ApplicationController
   def update
     respond_to do |format|
       if @display_line.update(display_line_params)
-        format.html { redirect_to display_line_url(@display_line), notice: "Display line was successfully updated." }
-        format.json { render :show, status: :ok, location: @display_line }
+        format.html { redirect_to(display_line_url(@display_line), notice: 'Display line was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @display_line) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @display_line.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @display_line.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -52,8 +52,8 @@ class DisplayLinesController < ApplicationController
     @display_line.destroy
 
     respond_to do |format|
-      format.html { redirect_to display_lines_url, notice: "Display line was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(display_lines_url, notice: 'Display line was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 

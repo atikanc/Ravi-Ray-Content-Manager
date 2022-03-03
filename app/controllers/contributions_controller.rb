@@ -49,6 +49,10 @@ class ContributionsController < ApplicationController
   def destroy
     @contribution.destroy
 
+    DisplayLine.where(Project: @contribution.id).find_each do |dl|
+      dl.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to(contributions_url, notice: 'Contribution was successfully destroyed.') }
       format.json { head(:no_content) }

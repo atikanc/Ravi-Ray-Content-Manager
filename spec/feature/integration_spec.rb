@@ -91,14 +91,11 @@ RSpec.describe 'Creating a project', type: :feature do
       find('#project_TypeID').find(:xpath, 'option[2]').select_option
       click_on 'Create Project'
       visit projects_path
-      expect(page).to have_content('2017')
-      expect(page).to have_content('30')
       expect(page).to have_content('2021')
       expect(page).to have_content('29')
       expect(page).to have_content('projectname1')
       expect(page).to have_link(href: 'http://projectlink1')
       expect(page).to have_content('projectowner1')
-      expect(page).to have_content('projectdescription1')
       expect(page).to have_content('Music')
     end
   end
@@ -140,8 +137,8 @@ RSpec.describe 'Creating a display line', type: :feature do
       select 2021, :from => 'display_line[ComponentEndDate(1i)]'
       select 'January', :from => 'display_line[ComponentEndDate(2i)]'
       select 29, :from => 'display_line[ComponentEndDate(3i)]'
-      find('#display_line_ContribProject').find(:xpath, 'option[2]').select_option
-      find('#display_line_ContribType').find(:xpath, 'option[2]').select_option
+      find('#display_line_Project_id').find(:xpath, 'option[2]').select_option
+      find('#display_line_Contribution_id').find(:xpath, 'option[2]').select_option
       click_on 'Create Display line'
       visit display_lines_path
       # expect(page).to have_content('contributiontype')

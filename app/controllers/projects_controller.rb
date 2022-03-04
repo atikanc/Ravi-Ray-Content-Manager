@@ -3,7 +3,13 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.search(params[:search])
+    if params[:search]
+      @projects = Project.search(params[:search])
+    elsif params[:searchContributions]
+      @projects = Project.searchContributions(params[:searchContributions])
+    else
+      @projects = Project.all
+    end
     
   end
 

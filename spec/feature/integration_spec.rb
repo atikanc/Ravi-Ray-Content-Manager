@@ -143,14 +143,14 @@ RSpec.describe 'Creating a project', type: :feature do
 
     #what the hell is going on
     visit projects_path
-    fill_in 'search', with: "\"Podcast\"" 
+    fill_in 'search', with: "Podcast" 
     click_on 'Search'
     expect(page).to have_content('2022')
     expect(page).to have_content('29')
     expect(page).to have_content('projectname2')
-    expect(page).to have_link(href: 'http://projectlink1')
+    expect(page).to have_link(href: 'http://projectlink2')
     expect(page).to have_content('projectowner2')
-    expect(page).to have_content("Podcast")
+    expect(page).to have_no_content("Music")
   end
 end
 

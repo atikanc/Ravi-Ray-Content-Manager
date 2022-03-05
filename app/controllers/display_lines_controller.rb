@@ -3,7 +3,7 @@ class DisplayLinesController < ApplicationController
 
   # GET /display_lines or /display_lines.json
   def index
-    @display_lines = DisplayLine.all
+   @display_lines = DisplayLine.all
   end
 
   # GET /display_lines/1 or /display_lines/1.json

@@ -1,6 +1,8 @@
 class Admin < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
+  validates :email, :full_name, presence: true
+
   # TODO: Remove check for @tamu.edu once in production
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     return nil unless /@gmail.com || @tamu.edu\z/.match?(email)

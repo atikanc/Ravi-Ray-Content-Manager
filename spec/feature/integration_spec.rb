@@ -167,7 +167,7 @@ RSpec.describe 'Creating a project', type: :feature do
   end
 
   scenario 'filtering for correct projects by contributions' do 
-
+    sign_in
     #Make music type
     visit new_type_path
     fill_in 'type_TypeName', with: 'Music'

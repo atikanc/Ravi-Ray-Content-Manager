@@ -59,4 +59,13 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Set up OmniAuth environment for integration tests
+  # OmniAuth.config.test_mode = true
+  # OmniAuth.config.add_mock(:google_admin, {
+  #   uid: "1234567",
+  #   email: "mockemail@email.com",
+  #   full_name: "Test Name",
+  #   avatar_url: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+  # })
 end

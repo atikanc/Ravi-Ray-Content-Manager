@@ -1,10 +1,31 @@
 # location: spec/feature/integration_spec.rb
 require 'rails_helper'
+#require_relative '../support/integration_spec_helper.rb'
+#include OAuthIntegrationTestHelper
 
 RSpec.describe 'Creating a type', type: :feature do
+  before do
+    # Rails.application.env_config["devise.mapping"] = Devise.mappings[:admin]
+    # Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_admin]
+    # visit root_path
+    # click_on 'Sign in with Google'
+    # visit root_path
+    ##
+    #click_on 'Sign in with Google'
+    # Admin.create!(email: 'mockemail@email.com', full_name: 'Test Name', uid: '1234567', avatar_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png')
+    # visit projects_path
+    # # sign in and verify sign in
+    # click_on 'Sign in with Google'
+  end
   scenario 'valid inputs' do
+    #Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    #Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_admin]
+    # visit root_path
+    # Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
+    # click_on 'Sign in with Google'
+    #login_with_oauth
     visit new_type_path
-    fill_in 'type_TypeName', with: 'Music'
+    fill_in 'type[TypeName]', with: 'Music'
     click_on 'Create Type'
     visit types_path
     expect(page).to have_content('Music')
@@ -12,10 +33,23 @@ RSpec.describe 'Creating a type', type: :feature do
 end
 
 RSpec.describe('Creating an award', type: :feature) do
+  before do
+    # Rails.application.env_config["devise.mapping"] = Devise.mappings[:admin]
+    # Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_admin]
+    # visit root_path
+    # click_on 'Sign in with Google'
+    # visit root_path
+    ##
+    #click_on 'Sign in with Google'
+    # Admin.create!(email: 'mockemail@email.com', full_name: 'Test Name', uid: '1234567', avatar_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png')
+    # visit projects_path
+    # # sign in and verify sign in
+    # click_on 'Sign in with Google'
+  end
   it 'valid awards' do
     visit new_award_path
-    fill_in 'award_AwardName', with: 'Test Award'
-    fill_in 'award_AwardLink', with: 'test.com'
+    fill_in 'award[AwardName]', with: 'Test Award'
+    fill_in 'award[AwardLink]', with: 'test.com'
     select '2022', :from => 'award_AwardYear_1i'
     select 'February', :from => 'award_AwardYear_2i'
     select '12', :from => 'award_AwardYear_3i'

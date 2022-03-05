@@ -141,7 +141,7 @@ RSpec.describe 'Creating a project', type: :feature do
     find('#project_TypeID').find(:xpath, 'option[3]').select_option
     click_on 'Create Project'
 
-    #what the hell is going on
+    #check filtering
     visit projects_path
     fill_in 'search', with: "Podcast" 
     click_on 'Search'
@@ -151,6 +151,92 @@ RSpec.describe 'Creating a project', type: :feature do
     expect(page).to have_link(href: 'http://projectlink2')
     expect(page).to have_content('projectowner2')
     expect(page).to have_no_content("Music")
+  end
+
+  scenario 'filtering for correct projects by contributions' do 
+
+    #Make music type
+    visit new_type_path
+    fill_in 'type_TypeName', with: 'Music'
+    click_on 'Create Type'
+    
+    #Make podcast type
+    visit new_type_path
+    fill_in 'type_TypeName', with: 'Podcast'
+    click_on 'Create Type'
+
+    #make contribution mastered
+    visit new_contribution_path
+    fill_in 'contribution_ContributionType', with: 'Mastered'
+    click_on 'Create Contribution'
+
+    #Make the music project
+    visit new_project_path
+    fill_in 'project_ProjectName', with: 'projectname1'
+    fill_in 'project_ProjectLink', with: 'projectlink1'
+    fill_in 'project_ProjectOwner', with: 'projectowner1'
+    fill_in 'project_ProjectDescription', with: 'projectdescription1'
+    select 2017, :from => 'project[ProjectStart(1i)]'
+    select 'January', :from => 'project[ProjectStart(2i)]'
+    select 30, :from => 'project[ProjectStart(3i)]'
+    select 2021, :from => 'project[ProjectEnd(1i)]'
+    select 'January', :from => 'project[ProjectEnd(2i)]'
+    select 29, :from => 'project[ProjectEnd(3i)]'
+    find('#project_TypeID').find(:xpath, 'option[2]').select_option
+    click_on 'Create Project'
+
+    #Make the podcast project
+    visit new_project_path
+    fill_in 'project_ProjectName', with: 'projectname2'
+    fill_in 'project_ProjectLink', with: 'projectlink2'
+    fill_in 'project_ProjectOwner', with: 'projectowner2'
+    fill_in 'project_ProjectDescription', with: 'projectdescription2'
+    select 2017, :from => 'project[ProjectStart(1i)]'
+    select 'January', :from => 'project[ProjectStart(2i)]'
+    select 30, :from => 'project[ProjectStart(3i)]'
+    select 2022, :from => 'project[ProjectEnd(1i)]'
+    select 'January', :from => 'project[ProjectEnd(2i)]'
+    select 29, :from => 'project[ProjectEnd(3i)]'
+    find('#project_TypeID').find(:xpath, 'option[3]').select_option
+    click_on 'Create Project'
+
+    #make display line 1
+    visit new_display_line_path
+    fill_in 'display_line_ComponentContributed', with: 'something1'
+    select 2017, :from => 'display_line[ComponentStartDate(1i)]'
+    select 'January', :from => 'display_line[ComponentStartDate(2i)]'
+    select 30, :from => 'display_line[ComponentStartDate(3i)]'
+    select 2021, :from => 'display_line[ComponentEndDate(1i)]'
+    select 'January', :from => 'display_line[ComponentEndDate(2i)]'
+    select 29, :from => 'display_line[ComponentEndDate(3i)]'
+    find('#display_line_Project_id').find(:xpath, 'option[1]').select_option
+    find('#display_line_Contribution_id').find(:xpath, 'option[1]').select_option
+    click_on 'Create Display line'
+
+    #make display line 2
+    visit new_display_line_path
+    fill_in 'display_line_ComponentContributed', with: 'something1'
+    select 2017, :from => 'display_line[ComponentStartDate(1i)]'
+    select 'January', :from => 'display_line[ComponentStartDate(2i)]'
+    select 30, :from => 'display_line[ComponentStartDate(3i)]'
+    select 2021, :from => 'display_line[ComponentEndDate(1i)]'
+    select 'January', :from => 'display_line[ComponentEndDate(2i)]'
+    select 29, :from => 'display_line[ComponentEndDate(3i)]'
+    find('#display_line_Project_id').find(:xpath, 'option[2]').select_option
+    find('#display_line_Contribution_id').find(:xpath, 'option[2]').select_option
+    click_on 'Create Display line'
+
+    #check filtering for mastered
+    visit projects_path
+    fill_in 'searchContributions', with: "Mastered" 
+    click_on 'Search Contributions'
+    expect(page).to have_content('2021')
+    expect(page).to have_content('29')
+    expect(page).to have_content('projectname1')
+    expect(page).to have_link(href: 'http://projectlink1')
+    expect(page).to have_content('projectowner1')
+    expect(page).to have_no_content("projectname2")
+
   end
 end
 

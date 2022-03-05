@@ -10,6 +10,9 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.all
     end
+
+    @types = Type.all
+    @contributions = Contribution.all.pluck(:ContributionType)
     
   end
 

@@ -1,11 +1,12 @@
 class Admin < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
-  validates :email, :full_name, presence: true
+  validates :full_name, presence: true
+  validates :email, presence: true
 
-  # TODO: Remove check for @tamu.edu once in production
+  # TODO: Change this to Ravi's email once in production
   def self.from_google(email:, full_name:, uid:, avatar_url:)
-    return nil unless /@gmail.com || @tamu.edu\z/.match?(email)
+    return nil unless /alexanderhall4923@gmail.com\z/.match?(email)
     create_with(uid: uid, full_name: full_name, avatar_url: avatar_url).find_or_create_by!(email: email)
   end
 end

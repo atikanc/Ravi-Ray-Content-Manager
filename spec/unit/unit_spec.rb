@@ -60,23 +60,63 @@ end
   
   
 RSpec.describe Project, type: :model do
-    subject do
-      described_class.new(ProjectName: 'a', ProjectLink: 'b', TypeID: '1')
-    end
-  
-    it 'is valid with valid attributes' do
-      expect(subject).to be_valid
-    end
-  
-    it 'is not valid without a type ID' do
-      subject.TypeID = nil
-      expect(subject).not_to be_valid
-    end
+  subject do
+    described_class.new(ProjectName: 'a', ProjectLink: 'b', TypeID: '1')
   end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without a type ID' do
+    subject.TypeID = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'will find the projects by the type name' do
+    music_type = Type.create(TypeName: 'Music')
+    podcast_type = Type.create(TypeName: 'Podcast')
+
+    project_1 = Project.create( ProjectName: 'founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Atikan', 
+                                ProjectStart: "2022-03-03",
+                                ProjectEnd: "2022-03-03",
+                                TypeID: 1)
+    project_2 = Project.create( ProjectName: 'not founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Alex', 
+                                TypeID: 2)
+    @project = Project.search("\"Music\"")
+    expect(@project.first).to eq(project_1)
+  end
+
+  it 'will show all projects if there is no project by a type name' do
+    music_type = Type.create(TypeName: 'Music')
+    podcast_type = Type.create(TypeName: 'Podcast')
+    video_type = Type.create(TypeName: 'Video')
+
+    project_1 = Project.create( ProjectName: 'founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Atikan', 
+                                ProjectStart: "2022-03-03",
+                                ProjectEnd: "2022-03-03",
+                                TypeID: 1)
+    project_2 = Project.create( ProjectName: 'not founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Alex', 
+                                TypeID: 2)
+    @project = Project.search("\"Video\"")
+    expect(@project.length).to eq(2)
+  end
+end
 
 RSpec.describe DisplayLine, type: :model do
     subject do
-      described_class.new(ComponentContributed: 'a', ComponentStartDate: Date.current, ComponentEndDate: Date.current, ContribProject: 1, ContribType: 2)
+      described_class.new(ComponentContributed: 'a', ComponentStartDate: Date.current, 
+        ComponentEndDate: Date.current, 
+        Project: Project.new(ProjectName: 'a', ProjectLink: 'b', TypeID: '1'), 
+        Contribution: Contribution.new(ContributionType: 'Mixed'))
     end
   
     it 'is valid with valid attributes' do
@@ -99,12 +139,12 @@ RSpec.describe DisplayLine, type: :model do
     end
 
     it 'is not valid without a contribution project' do
-      subject.ContribProject = nil
+      subject.Project = nil
       expect(subject).not_to be_valid
     end
 
     it 'is not valid without a contribution type' do
-      subject.ContribType = nil
+      subject.Contribution = nil
       expect(subject).not_to be_valid
     end
   end
@@ -115,25 +155,29 @@ RSpec.describe Award, type: :model do
   end
 
   it 'is valid with valid attributes' do
-    expect(subject).to be_valid
+    expect(subject).to(be_valid)
   end
 
   it 'is not valid without a name' do
     subject.AwardName = nil
-    expect(subject).not_to be_valid
+    expect(subject).not_to(be_valid)
   end
 
   it 'is not valid without a year' do
     subject.AwardYear = nil
-    expect(subject).not_to be_valid
+    expect(subject).not_to(be_valid)
   end
 
   it 'is valid with a name' do
-    expect(subject).to be_valid
+    expect(subject).to(be_valid)
   end
 
   it 'is valid with a year' do
-    expect(subject).to be_valid
+    expect(subject).to(be_valid)
   end
 end
 
+
+
+  
+  

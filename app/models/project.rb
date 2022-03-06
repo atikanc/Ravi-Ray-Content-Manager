@@ -13,4 +13,29 @@ class Project < ApplicationRecord
     end
   end
   
+
+  def self.search(search)
+    
+    if search
+      project_type = Type.find_by(TypeName: search)
+      if project_type
+        self.where(TypeID: project_type)
+      else
+        @projects = Project.all
+      end
+    else
+      @projects = Project.all
+    end
+  end
+
+  def self.searchContributions(searchContributions)
+    if searchContributions
+      contrib = Contribution.find_by(ContributionType: searchContributions)
+      pids = DisplayLine.where(Contribution: contrib).pluck(:Project_id)
+      self.where(id: pids)
+    else
+      @projects = Project.all
+    end
+  end
+
 end

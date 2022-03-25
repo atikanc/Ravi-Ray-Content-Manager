@@ -4,6 +4,9 @@ class Project < ApplicationRecord
   has_many :display_lines
   has_many :contributions, through: :display_lines
 
+  scope :TypeID, -> { where(id: TypeID)}
+  # Ex:- scope :active, -> {where(:active => true)}
+
   # From https://stackoverflow.com/questions/36038646/string-interpolation-to-external-link-without-http
   # For Input Sanitization
   def ProjectLink=(url)
@@ -15,11 +18,11 @@ class Project < ApplicationRecord
   
 
   def self.search(search)
-    
     if search
-      project_type = Type.find_by(TypeName: search)
-      if project_type
-        self.where(TypeID: project_type)
+      puts search[:multibox]
+      puts search[:multibox].length 
+      if search[:multibox].length > 0
+        @projects = Project.all
       else
         @projects = Project.all
       end

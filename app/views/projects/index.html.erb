@@ -21,6 +21,16 @@
     <%= submit_tag("Search", :name => nil) %>
   <% end %>
 
+  <%= form_tag projects_path, :method => "get" do %>
+    <% Type.all.each do |type| %>
+      <li>
+      <%= label_tag(:search, type.TypeName) %>
+      <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
+      </li>
+    <% end %>
+    <%= submit_tag("Search", :name => nil) %>
+  <% end %>
+
   <tbody>
     <% @projects.each do |project| %>
       <tr>

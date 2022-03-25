@@ -1,10 +1,19 @@
-# location: spec/feature/integration_spec.rb
 require 'rails_helper'
+
+def sign_in
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_admin]
+    visit root_path
+    # sign in and verify sign in
+    click_on('Sign in with Google')
+    visit root_path
+end
 
 RSpec.describe 'Creating a type', type: :feature do
   scenario 'valid inputs' do
+    #sign_in
     visit new_type_path
-    fill_in 'type_TypeName', with: 'Music'
+    fill_in 'type[TypeName]', with: 'Music', visible: true
     click_on 'Create Type'
     visit types_path
     expect(page).to have_content('Music')
@@ -13,9 +22,10 @@ end
 
 RSpec.describe('Creating an award', type: :feature) do
   it 'valid awards' do
+    #sign_in
     visit new_award_path
-    fill_in 'award_AwardName', with: 'Test Award'
-    fill_in 'award_AwardLink', with: 'test.com'
+    fill_in 'award[AwardName]', with: 'Test Award'
+    fill_in 'award[AwardLink]', with: 'test.com'
     select '2022', :from => 'award_AwardYear_1i'
     select 'February', :from => 'award_AwardYear_2i'
     select '12', :from => 'award_AwardYear_3i'
@@ -29,6 +39,7 @@ end
 
 RSpec.describe 'Creating an awarded', type: :feature do
   scenario 'valid inputs' do
+    #sign_in
     #create type
     visit new_type_path
     fill_in 'type_TypeName', with: 'Music'
@@ -71,6 +82,7 @@ end
 
 RSpec.describe 'Creating a project', type: :feature do
   scenario 'valid inputs' do
+    #sign_in
     # make music type
     visit new_type_path
     fill_in 'type_TypeName', with: 'Music'
@@ -101,6 +113,7 @@ RSpec.describe 'Creating a project', type: :feature do
   end
 
   scenario 'filtering the correct projects by type' do
+    #sign_in
     #Make music type
     visit new_type_path
     fill_in 'type_TypeName', with: 'Music'
@@ -154,7 +167,7 @@ RSpec.describe 'Creating a project', type: :feature do
   end
 
   scenario 'filtering for correct projects by contributions' do 
-
+    #sign_in
     #Make music type
     visit new_type_path
     fill_in 'type_TypeName', with: 'Music'
@@ -242,6 +255,7 @@ end
 
 RSpec.describe 'Creating a display line', type: :feature do
   scenario 'valid inputs' do
+    #sign_in
     # make music type
     visit new_type_path
     fill_in 'type_TypeName', with: 'Music'
@@ -291,6 +305,7 @@ end
 
 RSpec.describe 'Creating a contribution type', type: :feature do
   scenario 'valid inputs' do
+    #sign_in
     visit new_contribution_path
     fill_in 'contribution_ContributionType', with: 'Bao Type'
     click_on 'Create Contribution'

@@ -17,10 +17,20 @@
   </thead>
 
   <%= form_tag projects_path, :method => "get" do %>
-    <%= label_tag(:search, "What projects do you want to see: ") %>
+    <%= label_tag(:search, "Project Type: ") %>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag("Search", :name => nil) %>
   <% end %>
+
+  <br><br>
+
+  <%= form_tag projects_path, :method => "get" do %>
+    <%= label_tag(:searchContributions, "Project Contribution: ") %>
+    <%= text_field_tag :searchContributions, params[:searchContributions] %>
+    <%= submit_tag("Search Contributions", :name => nil) %>
+  <% end %>
+
+  <br><br>
 
   <tbody>
     <% @projects.each do |project| %>

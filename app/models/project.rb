@@ -19,10 +19,14 @@ class Project < ApplicationRecord
 
   def self.search(search)
     if search
-      puts search[:multibox]
-      puts search[:multibox].length 
       if search[:multibox].length > 0
-        @projects = Project.all
+       search[:multibox].each do |single|
+        project_type = Type.find_by(TypeName: single)
+        puts "Look here"
+        puts project_type.TypeName
+       end
+       @projects = Project.all
+
       else
         @projects = Project.all
       end

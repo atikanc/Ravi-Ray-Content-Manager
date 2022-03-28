@@ -49,6 +49,10 @@ class AwardsController < ApplicationController
   def destroy
     @award.destroy
 
+    Awarded.where(AwardID: @award.id).find_each do |aw|
+      aw.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to(awards_url, notice: 'Award was successfully destroyed.') }
       format.json { head(:no_content) }

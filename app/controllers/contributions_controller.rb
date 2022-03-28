@@ -49,7 +49,7 @@ class ContributionsController < ApplicationController
   def destroy
     @contribution.destroy
 
-    DisplayLine.where(Project: @contribution.id).find_each do |dl|
+    DisplayLine.where(Contribution: @contribution.id).find_each do |dl|
       dl.destroy
     end
 

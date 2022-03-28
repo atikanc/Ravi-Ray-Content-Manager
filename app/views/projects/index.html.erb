@@ -28,6 +28,13 @@
       <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
       </li>
     <% end %>
+
+    <% Contribution.all.each do |cont| %>
+      <li>
+      <%= label_tag(:search, cont.ContributionType) %>
+      <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
+      </li>
+    <% end %>
     <%= submit_tag("Search", :name => nil) %>
   <% end %>
 

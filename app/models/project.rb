@@ -20,12 +20,32 @@ class Project < ApplicationRecord
   def self.search(search)
     if search
       if search[:multibox].length > 0
-       search[:multibox].each do |single|
-        project_type = Type.find_by(TypeName: single)
-        puts "Look here"
-        puts project_type.TypeName
-       end
-       @projects = Project.all
+        type_list = Array.new
+        contribution_list = Array.new
+        project_type = ""
+        search[:multibox].each do |single|
+          
+          project_type = Type.find_by(TypeName: single)
+          if project_type
+            type_list.push(project_type)
+          end
+          
+          project_type = Contribution.find_by(ContributionType: single)
+          if project_type
+            puts project_type.ContributionType
+            puts "---------------------------------------"
+            contribution_list.push(project_type)
+          end
+        end
+
+        #@projects = self.where(TypeID: type_list)
+        pids = DisplayLine.where(Contribution: contribution_list).pluck(:Project_id)
+        if pids
+          Project.where(id: pids).where(TypeID: type_list)
+        end
+       
+        #puts pids.length
+        
 
       else
         @projects = Project.all

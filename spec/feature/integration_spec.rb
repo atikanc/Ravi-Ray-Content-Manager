@@ -143,14 +143,154 @@ RSpec.describe 'Creating a project', type: :feature do
 
     #what the hell is going on
     visit projects_path
-    fill_in 'search', with: "Podcast" 
+    page.check('search_multibox_podcast')
     click_on 'Search'
     expect(page).to have_content('2022')
     expect(page).to have_content('29')
     expect(page).to have_content('projectname2')
     expect(page).to have_link(href: 'http://projectlink2')
     expect(page).to have_content('projectowner2')
-    expect(page).to have_no_content("Music")
+    expect(page).to have_no_content("projectname1")
+  end
+
+  scenario 'filtering the correct projects by contribution' do
+    #Make music type
+    visit new_type_path
+    fill_in 'type_TypeName', with: 'Music'
+    click_on 'Create Type'
+    
+    #Make podcast type
+    visit new_type_path
+    fill_in 'type_TypeName', with: 'Podcast'
+    click_on 'Create Type'
+
+    #Make the music project
+    visit new_project_path
+    fill_in 'project_ProjectName', with: 'projectname1'
+    fill_in 'project_ProjectLink', with: 'projectlink1'
+    fill_in 'project_ProjectOwner', with: 'projectowner1'
+    fill_in 'project_ProjectDescription', with: 'projectdescription1'
+    select 2017, :from => 'project[ProjectStart(1i)]'
+    select 'January', :from => 'project[ProjectStart(2i)]'
+    select 30, :from => 'project[ProjectStart(3i)]'
+    select 2021, :from => 'project[ProjectEnd(1i)]'
+    select 'January', :from => 'project[ProjectEnd(2i)]'
+    select 29, :from => 'project[ProjectEnd(3i)]'
+    find('#project_TypeID').find(:xpath, 'option[2]').select_option
+    click_on 'Create Project'
+
+    #Make the podcast project
+    visit new_project_path
+    fill_in 'project_ProjectName', with: 'projectname2'
+    fill_in 'project_ProjectLink', with: 'projectlink2'
+    fill_in 'project_ProjectOwner', with: 'projectowner2'
+    fill_in 'project_ProjectDescription', with: 'projectdescription2'
+    select 2017, :from => 'project[ProjectStart(1i)]'
+    select 'January', :from => 'project[ProjectStart(2i)]'
+    select 30, :from => 'project[ProjectStart(3i)]'
+    select 2022, :from => 'project[ProjectEnd(1i)]'
+    select 'January', :from => 'project[ProjectEnd(2i)]'
+    select 29, :from => 'project[ProjectEnd(3i)]'
+    find('#project_TypeID').find(:xpath, 'option[3]').select_option
+    click_on 'Create Project'
+
+    #Make the displayline that will be assigned to project 2
+    visit new_display_line_path
+    select 2022, :from => 'display_line[ComponentStartDate(1i)]'
+    select 'April', :from => 'display_line[ComponentStartDate(2i)]'
+    select 1, :from => 'display_line[ComponentStartDate(3i)]'
+    select 2022, :from => 'display_line[ComponentEndDate(1i)]'
+    select 'April', :from => 'display_line[ComponentEndDate(2i)]'
+    select 1, :from => 'display_line[ComponentEndDate(3i)]'
+    select 'projectname2', :from => 'display_line[Project_id]'
+
+
+    #what the hell is going on
+    visit projects_path
+    page.check('search_multibox_podcast')
+    click_on 'Search'
+    expect(page).to have_content('2022')
+    expect(page).to have_content('29')
+    expect(page).to have_content('projectname2')
+    expect(page).to have_link(href: 'http://projectlink2')
+    expect(page).to have_content('projectowner2')
+    expect(page).to have_no_content("projectname1")
+  end
+
+  scenario 'filtering the correct projects by contribution and type' do
+    #Make music type
+    visit new_type_path
+    fill_in 'type_TypeName', with: 'Music'
+    click_on 'Create Type'
+    
+    #Make podcast type
+    visit new_type_path
+    fill_in 'type_TypeName', with: 'Podcast'
+    click_on 'Create Type'
+
+    #Make contribution type
+    visit new_contribution_path
+    fill_in 'contribution_ContributionType', with: 'hahaha'
+    click_on 'Create Contribution'
+
+    #Make the music project
+    visit new_project_path
+    fill_in 'project_ProjectName', with: 'projectname1'
+    fill_in 'project_ProjectLink', with: 'projectlink1'
+    fill_in 'project_ProjectOwner', with: 'projectowner1'
+    fill_in 'project_ProjectDescription', with: 'projectdescription1'
+    select 2017, :from => 'project[ProjectStart(1i)]'
+    select 'January', :from => 'project[ProjectStart(2i)]'
+    select 30, :from => 'project[ProjectStart(3i)]'
+    select 2021, :from => 'project[ProjectEnd(1i)]'
+    select 'January', :from => 'project[ProjectEnd(2i)]'
+    select 29, :from => 'project[ProjectEnd(3i)]'
+    select 'Music', :from => 'project[TypeID]'
+    click_on 'Create Project'
+
+    #Make the podcast project
+    visit new_project_path
+    fill_in 'project_ProjectName', with: 'projectname2'
+    fill_in 'project_ProjectLink', with: 'projectlink2'
+    fill_in 'project_ProjectOwner', with: 'projectowner2'
+    fill_in 'project_ProjectDescription', with: 'projectdescription2'
+    select 2017, :from => 'project[ProjectStart(1i)]'
+    select 'January', :from => 'project[ProjectStart(2i)]'
+    select 30, :from => 'project[ProjectStart(3i)]'
+    select 2022, :from => 'project[ProjectEnd(1i)]'
+    select 'January', :from => 'project[ProjectEnd(2i)]'
+    select 29, :from => 'project[ProjectEnd(3i)]'
+    select 'Podcast', :from => 'project[TypeID]'
+    click_on 'Create Project'
+
+    #create the display line
+    visit new_display_line_path
+    fill_in 'display_line_ComponentContributed', with: "I am having a stroke rn"
+    select 2022, :from => 'display_line[ComponentStartDate(1i)]'
+    select 'April', :from => 'display_line[ComponentStartDate(2i)]'
+    select 1, :from => 'display_line[ComponentStartDate(3i)]'
+    select 'projectname2', :from => 'display_line[Project_id]'
+    select 'hahaha', :from => 'display_line[Contribution_id]'
+    click_on 'Create Display line'
+
+    visit display_lines_path
+    expect(page).to have_content('hahaha')
+    expect(page).to have_content('projectname2')
+
+    visit projects_path
+    page.check('search_multibox_podcast')
+    page.check('search_multibox_hahaha')
+    click_on 'Search'
+    expect(page).to have_content('projectname2')
+    expect(page).to have_content('Podcast')
+    expect(page).to have_no_content('projectname1')
+
+
+    
+  
+
+    
+
   end
 end
 

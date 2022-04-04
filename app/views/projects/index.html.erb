@@ -3,7 +3,7 @@
 <h1>Projects</h1>
 <%= link_to "Sign Out", destroy_admin_session_path %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Cover</th>
@@ -57,9 +57,9 @@
         <td><%= project.ProjectOwner %></td>
         <td><%= project.ProjectEnd %></td>
         <td><%= Type.find(project.TypeID).TypeName %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project, :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_project_path(project), :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>

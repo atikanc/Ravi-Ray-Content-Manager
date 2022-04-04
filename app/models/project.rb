@@ -62,4 +62,5 @@ class Project < ApplicationRecord
       @projects = Project.all
     end
   end
+
 end

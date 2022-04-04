@@ -30,6 +30,9 @@ gem 'aws-sdk-s3', require: false
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'brakeman'
+gem 'devise'
+gem 'omniauth', '~>1.9.1'
+gem 'omniauth-google-oauth2'
 gem 'rexml'
 gem 'rubocop'
 gem 'rubocop-performance'

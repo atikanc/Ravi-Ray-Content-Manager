@@ -78,6 +78,13 @@ For ActiveStorage, we used Amazon AWS to store images persistently.
 2. AWS Secret Key: AWS_SECRET_ACCESS_KEY = [Your Key Here]
 3. AWS S3 Bucket Name: S3_BUCKET = [Your Key Here]
 
+The following untracked files need to be added to the config/ directory.
+
+To test authentication locally, create a file called "local_env.yml" with the following format:
+```
+CLIENT_ID: 'XXXX'
+CLIENT_SECRET: 'XXXX'
+```
 
 ## Deployment
 

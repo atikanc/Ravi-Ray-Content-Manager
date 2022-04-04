@@ -3,7 +3,7 @@
 <h1>Projects</h1>
 <%= link_to "Sign Out", destroy_admin_session_path %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Cover</th>
@@ -17,8 +17,18 @@
   </thead>
 
   <%= form_tag projects_path, :method => "get" do %>
-    <%= label_tag(:search, "Project Type: ") %>
-    <%= text_field_tag :search, params[:search] %>
+    <% Type.all.each do |type| %>
+      <li>
+      <%= label_tag(:search, type.TypeName) %>
+      <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
+      </li>
+    <% end %>
+    <% Contribution.all.each do |cont| %>
+      <li>
+      <%= label_tag(:search, cont.ContributionType) %>
+      <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
+      </li>
+    <% end %>
     <%= submit_tag("Search", :name => nil) %>
   <% end %>
 
@@ -47,9 +57,9 @@
         <td><%= project.ProjectOwner %></td>
         <td><%= project.ProjectEnd %></td>
         <td><%= Type.find(project.TypeID).TypeName %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project, :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_project_path(project), :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -68,4 +78,3 @@
 <%= link_to 'Project Awards', awardeds_path %>
 <br>
 <%= link_to 'Display Lines', display_lines_path %>
-

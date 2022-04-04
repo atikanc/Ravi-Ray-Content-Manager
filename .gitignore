@@ -52,5 +52,13 @@ yarn-debug.log*
 /config/master.key
 /config/local_env.yml
 .env
+config/local_env.yml
 
 /coverage
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

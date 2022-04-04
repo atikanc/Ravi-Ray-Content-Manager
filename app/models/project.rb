@@ -4,6 +4,9 @@ class Project < ApplicationRecord
   has_many :display_lines
   has_many :contributions, through: :display_lines
 
+  scope :TypeID, -> { where(id: TypeID)}
+  # Ex:- scope :active, -> {where(:active => true)}
+
   # From https://stackoverflow.com/questions/36038646/string-interpolation-to-external-link-without-http
   # For Input Sanitization
   def ProjectLink=(url)
@@ -15,24 +18,46 @@ class Project < ApplicationRecord
   
 
   def self.search(search)
-    
     if search
-      project_type = Type.find_by(TypeName: search)
-      if project_type
-        self.where(TypeID: project_type)
+      if search[:multibox].length > 0
+        type_list = Array.new
+        contribution_list = Array.new
+        project_type = ""
+
+        search[:multibox].each do |single|
+          project_type = Type.find_by(TypeName: single)
+          if project_type
+            puts "I am putting #{single} in type list"
+            puts project_type.TypeName
+            type_list.push(project_type)
+          end
+          
+          project_type = Contribution.find_by(ContributionType: single)
+          if project_type
+            puts "I am putting #{single} in contribution list"
+            puts project_type.ContributionType
+            contribution_list.push(project_type)
+          end
+          
+        end
+
+        tids = Project.where(TypeID: type_list)
+        pids = DisplayLine.where(Contribution: contribution_list).pluck(:Project_id)
+        if (type_list.length > 0) && (contribution_list.length > 0)
+          puts "pids and tids"
+          @projects = Project.where(id:pids).and(Project.where(TypeID: type_list))
+        elsif (type_list.length > 0) && (contribution_list.length == 0)
+          puts "just tids"
+          @projects = Project.where(TypeID: type_list)
+        elsif (type_list.length == 0) && (contribution_list.length > 0)
+          puts "only pids"
+          @projects = Project.where(id:pids)
+        else
+          @projects = Project.all
+        end
       else
         @projects = Project.all
       end
-    else
-      @projects = Project.all
-    end
-  end
-
-  def self.searchContributions(searchCont)
-    if searchCont
-      contrib = Contribution.find_by(ContributionType: searchCont)
-      pids = DisplayLine.where(Contribution: contrib).pluck(:Project_id)
-      self.where(id: pids)
     else
       @projects = Project.all
     end

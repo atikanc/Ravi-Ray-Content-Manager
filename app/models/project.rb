@@ -46,12 +46,6 @@ class Project < ApplicationRecord
         if (type_list.length > 0) && (contribution_list.length > 0)
           puts "pids and tids"
           @projects = Project.where(id:pids).and(Project.where(TypeID: type_list))
-          #if @projects.length < 1
-           # @projects = Project.all
-          #end
-
-
-
         elsif (type_list.length > 0) && (contribution_list.length == 0)
           puts "just tids"
           @projects = Project.where(TypeID: type_list)

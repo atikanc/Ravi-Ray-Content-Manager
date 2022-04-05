@@ -6,7 +6,8 @@ class Admin < ApplicationRecord
 
   # TODO: Change this to Ravi's email once in production
   def self.from_google(email:, full_name:, uid:, avatar_url:)
-    return nil unless /roboburner13@gmail.com\z/.match?(email)
+    authorized = ENV['AUTHORIZED']
+    return nil unless authorized.include?(email)
     create_with(uid: uid, full_name: full_name, avatar_url: avatar_url).find_or_create_by!(email: email)
   end
 end

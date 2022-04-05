@@ -39,6 +39,7 @@ gem 'rubocop-performance'
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
 gem 'simplecov', :require => false
+gem 'bootstrap', '~> 5.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -34,18 +34,30 @@
 
   <br><br>
 
-  <%= form_tag projects_path, :method => "get" do %>
-    <%= label_tag(:searchContributions, "Project Contribution: ") %>
-    <%= text_field_tag :searchContributions, params[:searchContributions] %>
-    <%= submit_tag("Search Contributions", :name => nil) %>
-  <% end %>
-
-  <br><br>
-
   <tbody>
     <% @projects.each do |project| %>
       <tr>
         <td>
+
+          <div class="card" style="width: 18rem;">
+            <img src=
+              <% if project.ProjectCover.representable? %>
+                <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
+              <% else %>
+                <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
+              <% end %>
+             class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= project.ProjectName %>
+              </h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">
+                ><%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %>
+              </a>
+            </div>
+          </div>
+
           <% if project.ProjectCover.representable? %>
             <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
           <% else %>

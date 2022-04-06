@@ -2,7 +2,7 @@
 
 <h1>Projects</h1>
 
-<table class="table">
+<table>
   <thead>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <tr>
@@ -17,18 +17,8 @@
   </thead>
 
   <%= form_tag projects_path, :method => "get" do %>
-    <% Type.all.each do |type| %>
-      <li>
-      <%= label_tag(:search, type.TypeName) %>
-      <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
-      </li>
-    <% end %>
-    <% Contribution.all.each do |cont| %>
-      <li>
-      <%= label_tag(:search, cont.ContributionType) %>
-      <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
-      </li>
-    <% end %>
+    <%= label_tag(:search, "Project Type: ") %>
+    <%= text_field_tag :search, params[:search] %>
     <%= submit_tag("Search", :name => nil) %>
   <% end %>
 
@@ -60,9 +50,9 @@
         <td><%= project.ProjectOwner %></td>
         <td><%= project.ProjectEnd %></td>
         <td><%= Type.find(project.TypeID).TypeName %></td>
-        <td><%= link_to 'Show', project, :class => "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_project_path(project), :class => "btn btn-primary" %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Show', project %></td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
 
@@ -84,3 +74,4 @@
 <%= link_to 'Project Awards', awardeds_path %>
 <br>
 <%= link_to 'Display Lines', display_lines_path %>
+

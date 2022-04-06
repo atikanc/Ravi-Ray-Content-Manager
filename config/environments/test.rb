@@ -67,7 +67,7 @@ Rails.application.configure do
       :provider => "google_oauth2",
       :uid => "123456789",
       :info => {
-        email: "roboburner13@gmail.com",
+        email: "mockemail@email.com",
         full_name: "Test Name",
         avatar_url: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
       },

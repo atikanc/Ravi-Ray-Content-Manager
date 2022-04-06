@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
 
     @types = Type.all
     @contributions = Contribution.all.pluck(:ContributionType)
-    
+
   end
 
   # GET /projects/1 or /projects/1.json

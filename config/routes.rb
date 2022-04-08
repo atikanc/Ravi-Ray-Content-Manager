@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'projects/public'
   resources :display_lines
   resources :awardeds
   resources :contributions

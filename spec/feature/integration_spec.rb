@@ -6,12 +6,17 @@ def sign_in
     visit root_path
     # sign in and verify sign in
     click_on('Sign in with Google')
-    visit root_path
 end
 
 RSpec.describe 'Creating a type', type: :feature do
-  scenario 'valid inputs' do
-    sign_in
+  before do 
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_admin]
+    visit root_path
+    # sign in and verify sign in
+    click_on('Sign in with Google')
+  end
+  it 'valid inputs' do
     visit new_type_path
     fill_in 'type[TypeName]', with: 'Music', visible: true
     click_on 'Create Type'

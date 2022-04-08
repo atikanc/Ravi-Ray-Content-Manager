@@ -16,6 +16,20 @@ class ProjectsController < ApplicationController
     
   end
 
+  def public
+    if params[:search]
+      @projects = Project.search(params[:search])
+    elsif params[:searchContributions]
+      @projects = Project.searchContributions(params[:searchContributions])
+    else
+      @projects = Project.all
+    end
+
+    @types = Type.all
+    @contributions = Contribution.all.pluck(:ContributionType)
+
+  end
+
   # GET /projects/1 or /projects/1.json
   def show
     @contrib = DisplayLine.where(Project: @project)

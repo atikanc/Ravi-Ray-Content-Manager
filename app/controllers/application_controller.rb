@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
-   # TODO: Uncomment this when done testing or in production, comment when testing
-    before_action :authenticate_admin!
-   # TODO: Add "skip_before_filter :authenticate_user!" to the top of the controller file 
-   # of whichever new controller will only display projects(user side)
+   before_action :authenticate_admin!
+
+   helper_method :current_admin, :logged_in?
+
+   # get currently logged in admin (if exists) and store in @current_admin
+   def current_admin
+      @current_admin ||= Admin.find_by_id(session[:admin])
+   end
+
+   # check if there is a currently logged in admin
+   def logged_in?
+      current_admin != nil
+   end
 end

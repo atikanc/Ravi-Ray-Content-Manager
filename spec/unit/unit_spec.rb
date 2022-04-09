@@ -74,41 +74,127 @@ RSpec.describe Project, type: :model do
   end
 
   it 'will find the projects by the type name' do
-    music_type = Type.create(TypeName: 'Music')
-    podcast_type = Type.create(TypeName: 'Podcast')
+    music_type = Type.create(TypeName: 'random type')
+    podcast_type = Type.create(TypeName: 'second random type')
 
     project_1 = Project.create( ProjectName: 'founder', 
                                 ProjectLink: 'fake link', 
                                 ProjectOwner: 'Atikan', 
                                 ProjectStart: "2022-03-03",
                                 ProjectEnd: "2022-03-03",
-                                TypeID: 1)
+                                TypeID: music_type.id)
     project_2 = Project.create( ProjectName: 'not founder', 
                                 ProjectLink: 'fake link', 
                                 ProjectOwner: 'Alex', 
-                                TypeID: 2)
-    @project = Project.search("\"Music\"")
+                                TypeID: podcast_type.id)
+   
+    dictionary = {:multibox => [music_type.TypeName]}
+    @project = Project.search(dictionary)
     expect(@project.first).to eq(project_1)
   end
 
   it 'will show all projects if there is no project by a type name' do
-    music_type = Type.create(TypeName: 'Music')
-    podcast_type = Type.create(TypeName: 'Podcast')
-    video_type = Type.create(TypeName: 'Video')
+    music_type = Type.create(TypeName: 'random_type')
+    podcast_type = Type.create(TypeName: 'second_random_type')
+    video_type = Type.create(TypeName: 'wassup')
 
     project_1 = Project.create( ProjectName: 'founder', 
                                 ProjectLink: 'fake link', 
                                 ProjectOwner: 'Atikan', 
                                 ProjectStart: "2022-03-03",
                                 ProjectEnd: "2022-03-03",
-                                TypeID: 1)
+                                TypeID: music_type.id)
     project_2 = Project.create( ProjectName: 'not founder', 
                                 ProjectLink: 'fake link', 
                                 ProjectOwner: 'Alex', 
-                                TypeID: 2)
-    @project = Project.search("\"Video\"")
+                                TypeID: podcast_type.id)
+    
+    dictionary = {:multibox => [video_type.id]}
+    @project = Project.search(dictionary)
     expect(@project.length).to eq(2)
   end
+
+  it 'will find the projects by the contribution type' do
+    music_type = Type.create(TypeName: 'random_type')
+    podcast_type = Type.create(TypeName: 'second_random_type')
+    cont_type = Contribution.create(ContributionType: 'random_type')
+    second_cont_type = Contribution.create(ContributionType: 'second random_type')
+    
+
+    project_1 = Project.create( ProjectName: 'founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Atikan', 
+                                ProjectStart: "2022-03-03",
+                                ProjectEnd: "2022-03-03",
+                                TypeID: music_type.id)
+    project_2 = Project.create( ProjectName: 'not founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Alex', 
+                                TypeID: podcast_type.id)
+
+    display_one = DisplayLine.create( Project_id: project_1.id,
+                                      Contribution_id: cont_type.id)
+    
+    dictionary = {:multibox => [cont_type.id]}
+    @project = Project.search(dictionary)
+    expect(@project.first).to eq(project_1)
+  end
+
+  it 'will find the projects by the contribution type and project type' do
+    music_type = Type.create(TypeName: 'random_type')
+    podcast_type = Type.create(TypeName: 'second_random_type')
+    cont_type = Contribution.create(ContributionType: 'random_type')
+    second_cont_type = Contribution.create(ContributionType: 'second random_type')
+    
+
+    project_1 = Project.create( ProjectName: 'founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Atikan', 
+                                ProjectStart: "2022-03-03",
+                                ProjectEnd: "2022-03-03",
+                                TypeID: music_type.id)
+    project_2 = Project.create( ProjectName: 'not founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Alex', 
+                                TypeID: podcast_type.id)
+
+    display_one = DisplayLine.create( Project_id: project_1.id,
+                                      Contribution_id: cont_type.id)
+    
+    dictionary = {:multibox => [music_type.id, cont_type.id]}
+    @project = Project.search(dictionary)
+    expect(@project.first).to eq(project_1)
+  end
+
+  it 'it will return all projects if contribution and project type do not exist' do
+    music_type = Type.create(TypeName: 'random_type')
+    podcast_type = Type.create(TypeName: 'second_random_type')
+    video_type = Type.create(TypeName: 'wassup')
+
+    cont_type = Contribution.create(ContributionType: 'random_type')
+    second_cont_type = Contribution.create(ContributionType: 'second random_type')
+    random_cont_type = Contribution.create(ContributionType: 'really random_type')
+    
+
+    project_1 = Project.create( ProjectName: 'founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Atikan', 
+                                ProjectStart: "2022-03-03",
+                                ProjectEnd: "2022-03-03",
+                                TypeID: music_type.id)
+    project_2 = Project.create( ProjectName: 'not founder', 
+                                ProjectLink: 'fake link', 
+                                ProjectOwner: 'Alex', 
+                                TypeID: podcast_type.id)
+
+    display_one = DisplayLine.create( Project_id: project_1.id,
+                                      Contribution_id: cont_type.id)
+    
+    dictionary = {:multibox => [video_type.id, random_cont_type.id]}
+    @project = Project.search(dictionary)
+    expect(@project.length).to eq(2)
+  end
+
 end
 
 RSpec.describe DisplayLine, type: :model do
@@ -176,8 +262,3 @@ RSpec.describe Award, type: :model do
     expect(subject).to(be_valid)
   end
 end
-
-
-
-  
-  

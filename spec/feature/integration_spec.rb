@@ -9,14 +9,8 @@ def sign_in
 end
 
 RSpec.describe 'Creating a type', type: :feature do
-  before do 
-    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
-    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_admin]
-    visit root_path
-    # sign in and verify sign in
-    click_on('Sign in with Google')
-  end
   it 'valid inputs' do
+    sign_in
     visit new_type_path
     fill_in 'type[TypeName]', with: 'Music', visible: true
     click_on 'Create Type'
@@ -349,11 +343,9 @@ RSpec.describe 'Creating a display line', type: :feature do
     find('#display_line_Contribution_id').find(:xpath, 'option[2]').select_option
     click_on 'Create Display line'
     visit display_lines_path
-    # expect(page).to have_content('contributiontype')
     expect(page).to have_content('2017-01-30')
     expect(page).to have_content('2021-01-29')
     expect(page).to have_content('something1')
-    # expect(page).to have_content('projectname1')
   end
 end
 
@@ -367,4 +359,15 @@ RSpec.describe 'Creating a contribution type', type: :feature do
     expect(page).to have_content('Bao Type')
   end
 end
-  
+
+RSpec.describe 'Accessing projects index page', type: :feature do
+  scenario 'as an admin' do
+    sign_in
+    expect(page).to have_content('New Project')
+  end
+
+  scenario 'as a user' do
+    visit projects_path
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
+  end
+end

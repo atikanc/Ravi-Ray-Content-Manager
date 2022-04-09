@@ -27,6 +27,9 @@ class ProjectsController < ApplicationController
 
     @types = Type.all
     @contributions = Contribution.all.pluck(:ContributionType)
+    @awardeds = Awarded.all
+    @awards = Award.all
+    @contrib = DisplayLine.where(Project: @project)
 
   end
 

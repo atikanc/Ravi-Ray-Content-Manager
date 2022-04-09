@@ -4,13 +4,13 @@
 
 <div class="container-fluid">
     <div class="row flex-nowrap">
-          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 blue-ray">
               <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <span class="fs-5 d-none d-sm-inline">Filter</span>
                   <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                       <li>
                           <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                              <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Type</span></a>
+                              <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline white-ray">Type</span></a>
                           <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                               <li class="w-100">
                                 <%= form_tag projects_public_path, :method => "get" do %>
@@ -26,7 +26,7 @@
                       </li>
                       <li>
                           <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                              <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Contribution</span> </a>
+                              <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline white-ray">Contribution</span> </a>
                               <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                               <li class="w-100">
                                       <% Contribution.all.each do |cont| %>
@@ -100,7 +100,7 @@
         </div>
         
         <div class="col">
-            <div class="card h-100">
+            <div class="card h-100 blue-ray-outline">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#form-modal-<%= project.id %>">
                   <% if project.ProjectCover.representable? %>
                   <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]), class: "card-img-top"%>

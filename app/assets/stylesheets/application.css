@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+ .white-background-ray {
+     background-color: white!important;
+ }
+ .blue-ray-outline {
+    outline: 3px solid #00649A!important;
+}
+ .blue-ray {
+     background-color: #00649A!important;
+ }
+ .grey-background {
+     background-color: #4D4D4D!important;
+ }
+ .white-ray {
+     color: white;
+ }

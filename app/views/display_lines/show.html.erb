@@ -17,12 +17,12 @@
 
 <p>
   <strong>Contribtype:</strong>
-  <%= @display_line.ContribProject %>
+  <%= @display_line.Project.ProjectName %>
 </p>
 
 <p>
   <strong>Contribtype:</strong>
-  <%= @display_line.ContribType %>
+  <%= @display_line.Contribution.ContributionType %>
 </p>
 
 <%= link_to 'Edit', edit_display_line_path(@display_line) %> |

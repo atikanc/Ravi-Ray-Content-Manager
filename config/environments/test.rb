@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
@@ -34,7 +34,9 @@ Rails.application.configure do
   config.action_controller.allow_forgery_protection = false
 
   # Store uploaded files on the local file system in a temporary directory.
-  config.active_storage.service = :test
+  # config.active_storage.service = :test
+  config.active_storage.service = :amazon
+
 
   config.action_mailer.perform_caching = false
 
@@ -57,4 +59,24 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Set up OmniAuth environment for integration tests
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.allowed_request_methods += %i[get]
+  OmniAuth.config.mock_auth[:google_admin] = OmniAuth::AuthHash.new({
+      :provider => "google_oauth2",
+      :uid => "123456789",
+      :info => {
+        email: "roboburner13@gmail.com",
+        full_name: "Test Name",
+        avatar_url: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+      },
+      :credentials => {
+        :token => "token",
+        :refresh_token => "refresh token",
+        expires_at: 1_354_920_555,
+        expires: true
+      }
+    }
+  )
 end

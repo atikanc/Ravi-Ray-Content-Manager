@@ -1,38 +1,64 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Projects</h1>
+<%= link_to "Sign Out", destroy_admin_session_path %>
 
 <table>
   <thead>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <tr>
+      <th>Cover</th>
       <th>Name</th>
       <th>Link</th>
       <th>Owner</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Description</th>
-      <th>Cover</th>
+      <th>Production Date</th>
       <th>Type</th>
-      <th colspan="3"></th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
+
+  <%= form_tag projects_path, :method => "get" do %>
+    <%= label_tag(:search, "Project Type: ") %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag("Search", :name => nil) %>
+  <% end %>
+
+  <br><br>
 
   <tbody>
     <% @projects.each do |project| %>
       <tr>
+        <td>
+
+          <div class="card" style="width: 18rem;">
+              <% if project.ProjectCover.representable? %>
+                <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]), class: "card-img-top"%>
+              <% else %>
+                <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
+              <% end %>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= project.ProjectName %>
+              </h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank', class: 'btn btn-primary' %>
+              </a>
+            </div>
+          </div>
+        </td>
         <td><%= project.ProjectName %></td>
         <td><%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %> </td>
         <td><%= project.ProjectOwner %></td>
-        <td><%= project.ProjectStart %></td>
         <td><%= project.ProjectEnd %></td>
-        <td><%= project.ProjectDescription %></td>
-        <td><%= project.ProjectCover %></td>
         <td><%= Type.find(project.TypeID).TypeName %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </tbody>
 </table>
 

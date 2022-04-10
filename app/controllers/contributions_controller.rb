@@ -1,5 +1,5 @@
 class ContributionsController < ApplicationController
-  before_action :set_contribution, only: %i[ show edit update destroy ]
+  before_action :set_contribution, only: %i[show edit update destroy]
 
   # GET /contributions or /contributions.json
   def index
@@ -7,8 +7,7 @@ class ContributionsController < ApplicationController
   end
 
   # GET /contributions/1 or /contributions/1.json
-  def show
-  end
+  def show; end
 
   # GET /contributions/new
   def new
@@ -16,8 +15,7 @@ class ContributionsController < ApplicationController
   end
 
   # GET /contributions/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /contributions or /contributions.json
   def create
@@ -25,11 +23,11 @@ class ContributionsController < ApplicationController
 
     respond_to do |format|
       if @contribution.save
-        format.html { redirect_to contribution_url(@contribution), notice: "Contribution was successfully created." }
-        format.json { render :show, status: :created, location: @contribution }
+        format.html { redirect_to(contribution_url(@contribution), notice: 'Contribution was successfully created.') }
+        format.json { render(:show, status: :created, location: @contribution) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @contribution.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @contribution.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,11 +36,11 @@ class ContributionsController < ApplicationController
   def update
     respond_to do |format|
       if @contribution.update(contribution_params)
-        format.html { redirect_to contribution_url(@contribution), notice: "Contribution was successfully updated." }
-        format.json { render :show, status: :ok, location: @contribution }
+        format.html { redirect_to(contribution_url(@contribution), notice: 'Contribution was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @contribution) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @contribution.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @contribution.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -51,20 +49,25 @@ class ContributionsController < ApplicationController
   def destroy
     @contribution.destroy
 
+    DisplayLine.where(Contribution: @contribution.id).find_each do |dl|
+      dl.destroy
+    end
+
     respond_to do |format|
-      format.html { redirect_to contributions_url, notice: "Contribution was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(contributions_url, notice: 'Contribution was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_contribution
-      @contribution = Contribution.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def contribution_params
-      params.require(:contribution).permit(:ContributionType)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_contribution
+    @contribution = Contribution.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def contribution_params
+    params.require(:contribution).permit(:ContributionType)
+  end
 end

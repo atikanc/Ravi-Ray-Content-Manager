@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_11_013314) do
+ActiveRecord::Schema.define(version: 2022_03_04_151535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2022_02_11_013314) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "full_name"
+    t.string "uid"
+    t.string "avatar_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+  end
+
   create_table "awardeds", force: :cascade do |t|
     t.date "AwardedDate"
     t.integer "AwardID"
@@ -70,13 +80,15 @@ ActiveRecord::Schema.define(version: 2022_02_11_013314) do
   end
 
   create_table "display_lines", force: :cascade do |t|
+    t.bigint "Project_id"
+    t.bigint "Contribution_id"
     t.string "ComponentContributed"
     t.date "ComponentStartDate"
     t.date "ComponentEndDate"
-    t.integer "ContribProject"
-    t.integer "ContribType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["Contribution_id"], name: "index_display_lines_on_Contribution_id"
+    t.index ["Project_id"], name: "index_display_lines_on_Project_id"
   end
 
   create_table "projects", force: :cascade do |t|

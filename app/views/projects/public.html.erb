@@ -6,38 +6,39 @@
 <!-- Offcanvas Sidebar -->
 <div class="offcanvas offcanvas-start" id="demo">
   <div class="offcanvas-header">
-    <h1 class="offcanvas-title">Heading</h1>
+    <h1 class="offcanvas-title">Filter</h1>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">
-                <li class="w-100">
-              <%= form_tag projects_public_path, :method => "get" do %>
-                <% Type.all.each do |type| %>
-                  <li>
-                  <%= label_tag(:search, type.TypeName) %>
-                  <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
-                  </li>
-                <% end %>
+              
+        <strong>Type</strong>
+        <%= form_tag projects_public_path, :method => "get" do %>
+        <% Type.all.each do |type| %>
+          <li>
+          <%= label_tag(:search, type.TypeName) %>
+          <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
+          </li>
+        <% end %>
 
-            </li>
-            <% Contribution.all.each do |cont| %>
+
+        <strong>Contribution</strong>
+        <% Contribution.all.each do |cont| %>
           <li>
           <%= label_tag(:search, cont.ContributionType) %>
           <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
           </li>
         <% end %>
 
-        <li class="nav-item">
-            <%= submit_tag("Search", :name => nil) %> <% end %>
-        </li>
+        <%= submit_tag("Search", :name => nil) %> <% end %>
   </div>
 </div>
 
 <!-- Button to open the offcanvas sidebar -->
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-  Open Offcanvas Sidebar
+<button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo">
+  &#9776;Filter
 </button>
 
+  <div class="text-center">
   <h1>Credits</h1>
 
   <head>
@@ -45,6 +46,7 @@
   </style>
 
   </head>
+  </div>
 
   <br><br>
 

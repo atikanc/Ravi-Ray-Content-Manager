@@ -105,13 +105,8 @@
         </div>
         
         <div class="col">
-<<<<<<< HEAD
             <div class="card h-100">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#form-modal-<%= project.id %>" id="<%= project.ProjectName %>">
-=======
-            <div class="card h-100 grey-background-ray blue-outline-ray">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#form-modal-<%= project.id %>">
->>>>>>> c720c76d9cc4d6d9015905ee5a8f798e9bba1187
                   <% if project.ProjectCover.representable? %>
                   <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]), class: "card-img-top1" %>
                   <% else %>

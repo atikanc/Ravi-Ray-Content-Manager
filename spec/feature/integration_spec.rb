@@ -155,7 +155,7 @@ RSpec.describe 'Creating a project', type: :feature do
 
     #check filtering
     visit projects_public_path
-    click_on 'Type'
+    click_on 'filterBtn'
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
@@ -296,9 +296,7 @@ RSpec.describe 'Creating a project', type: :feature do
     expect(page).to have_content('projectname2')
 
     visit projects_public_path
-    click_on 'Contribution'
     page.check('search_multibox_mixing')
-    click_on 'Type'
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click

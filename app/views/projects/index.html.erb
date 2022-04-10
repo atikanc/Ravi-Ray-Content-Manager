@@ -2,6 +2,7 @@
 
 <h1>Projects</h1>
 <%= link_to "Sign Out", destroy_admin_session_path %>
+<br>
 
 <table>
   <thead>
@@ -17,35 +18,31 @@
     </tr>
   </thead>
 
-  <%= form_tag projects_path, :method => "get" do %>
-    <%= label_tag(:search, "Project Type: ") %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag("Search", :name => nil) %>
-  <% end %>
+        <strong>Type</strong>
+        <%= form_tag projects_path, :method => "get" do %>
+        <% Type.all.each do |type| %>
+          <li>
+          <%= label_tag(:search, type.TypeName) %>
+          <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
+          </li>
+        <% end %>
+
+
+        <strong>Contribution</strong>
+        <% Contribution.all.each do |cont| %>
+          <li>
+          <%= label_tag(:search, cont.ContributionType) %>
+          <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
+          </li>
+        <% end %>
+
+        <%= submit_tag("Search", :name => nil) %> <% end %>
 
   <br><br>
 
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td>
-
-          <div class="card" style="width: 18rem;">
-              <% if project.ProjectCover.representable? %>
-                <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]), class: "card-img-top"%>
-              <% else %>
-                <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
-              <% end %>
-            <div class="card-body">
-              <h5 class="card-title">
-                <%= project.ProjectName %>
-              </h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank', class: 'btn btn-primary' %>
-              </a>
-            </div>
-          </div>
-        </td>
         <td><%= project.ProjectName %></td>
         <td><%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %> </td>
         <td><%= project.ProjectOwner %></td>

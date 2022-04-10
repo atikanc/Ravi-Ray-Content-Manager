@@ -61,20 +61,39 @@ The application can be seen using a browser and navigating to http://localhost:3
 
 
 ## Environmental Variables/Files
+The following keys needed to be added to Heroku.
 
-We have environment variables setup for Authentication. The tutorial can be found here: https://medium.com/craft-academy/encrypted-credentials-in-ruby-on-rails-9db1f36d8570
+General Environment.
+1. Rails Environment: RAILS_ENV = production
 
-The tutorial above will help you understand now we encrypted the admin page's username and password!
+For Authentication, we used OmniAuth to leverage Google OAuth. 
+1. Client Secret Key: CLIENT_SECRET = [Your Key Here]
+2. Client ID: CLIENT_ID = [Your Key Here]
+
+For ActiveStorage, we used Amazon AWS to store images persistently.
+1. AWS Access Key: AWS_ACCESS_KEY = [Your Key Here]
+2. AWS Secret Key: AWS_SECRET_ACCESS_KEY = [Your Key Here]
+3. AWS S3 Bucket Name: S3_BUCKET = [Your Key Here]
+
+The following untracked files need to be added to the config/ directory.
+
+To test authentication locally, create a file called "local_env.yml" with the following format:
+```
+CLIENT_ID: 'XXXX'
+CLIENT_SECRET: 'XXXX'
+```
 
 
 ## Deployment
 
 1. Fork the project repository (https://github.com/cjnewman820/Ravi-Ray-Content-Manager) into your own GitHub account.
+   - Any changes you have made to the source code when you downloaded the code can now be pushed to your repo.
 2. In Heroku, connect your GitHub Account to the Heroku Account (https://dashboard.heroku.com/account/applications).
 3. From the Heroku Dashboard Click the New button in the top right of your app list and select Create new pipeline.
    - Search for and connect to the Github repository that your forked to your account.
 4. Create a new app under production to deploy from the main branch.
-5. Once the application is built and released, it can be accessed via the Heroku Link.
+5. Configure the environment variables listed above.
+6. Once the application is built and released, it can be accessed via the Heroku Link.
 
 ## CI/CD
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
   subject do
-    described_class.new(email: 'mockemail@email.com', full_name: 'Test Name', uid: '123456789', avatar_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png')
+    described_class.new(email: 'roboburner13@gmail.com', full_name: 'Test Name', uid: '123456789', avatar_url: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png')
   end
 
   it 'is valid with valid attributes' do

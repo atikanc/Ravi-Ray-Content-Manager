@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
-  skip_before_action :authenticate_admin!, only: [:public, :show]
+  skip_before_action :authenticate_admin!, only: [:public]
 
   # GET /projects or /projects.json
   def index

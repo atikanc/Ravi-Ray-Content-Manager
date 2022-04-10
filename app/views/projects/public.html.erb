@@ -34,7 +34,7 @@
 </div>
 
 <!-- Button to open the offcanvas sidebar -->
-<button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo">
+<button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
   &#9776;Filter
 </button>
 
@@ -100,7 +100,7 @@
         
         <div class="col">
             <div class="card h-100 grey-background-ray blue-outline-ray">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#form-modal-<%= project.id %>">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#form-modal-<%= project.id %>" id="<%= project.ProjectName %>">
                   <% if project.ProjectCover.representable? %>
                   <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]), class: "card-img-top1" %>
                   <% else %>

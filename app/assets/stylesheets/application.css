@@ -16,17 +16,20 @@
  .font-ray {
     font-family: 'Josefin Sans';
 }
+ .nav-bar-width-ray {
+    width: 200px!important;
+ }
  .white-background-ray {
      background-color: white!important;
  }
  .blue-outline-ray {
     outline: 3px solid black!important;
 }
- .blue-ray {
+ .blue-background-ray {
      background-color: #00649A!important;
  }
  .grey-background-ray {
-     background-color: #919191!important;
+     background-color: #1a1a1a!important;
  }
  .white-ray {
      color: white;
@@ -40,41 +43,16 @@
  .black-background-ray {
      background-color: black;
  }
+ .transparent-ray {
+     background-color: transparent!important;
+ }
  .card-img-top1 {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    padding: 0px;
+    box-shadow: 5px 10px 8px 0px #000000
 }
-  
-/* The sidebar menu */
-.sidebar {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
-  }
-  
-  /* The button used to open the sidebar */
-  .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-  }
-  
-  .openbtn:hover {
-    background-color: #444;
-  }
-
-  .offcanvas-start {
-    background-color: black!important;
-    color: white;
-}
+ .border-none {
+    border: 0px!important;
+ }

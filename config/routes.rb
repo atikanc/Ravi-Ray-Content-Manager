@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'projects/public'
+  get '/projects/help', to: 'projects#admin_help'
+  get '/projects/public/help', to: 'projects#user_help'
   resources :display_lines
   resources :awardeds
   resources :contributions

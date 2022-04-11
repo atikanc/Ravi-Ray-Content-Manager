@@ -34,6 +34,12 @@ class ProjectsController < ApplicationController
 
   end
 
+  def user_help
+  end
+
+  def admin_help
+  end
+
   # GET /projects/1 or /projects/1.json
   def show
     @contrib = DisplayLine.where(Project: @project)

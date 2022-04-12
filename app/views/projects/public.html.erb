@@ -11,7 +11,8 @@
   </div>
   <div class="offcanvas-body">
               
-        <strong>Type</strong>
+        <h4><strong>Type</strong></h4>
+        <p></p>
         <%= form_tag projects_public_path, :method => "get" do %>
         <% Type.all.each do |type| %>
         <p>
@@ -21,7 +22,8 @@
         <% end %>
 
 
-        <strong>Contribution</strong>
+        <h4><strong>Contribution</strong></h4>
+        <p></p>
         <% Contribution.all.each do |cont| %>
         <p>
           <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
@@ -33,12 +35,18 @@
   </div>
 </div>
 <div class="blue-background-ray">
+
 <!-- Button to open the offcanvas sidebar -->
-<button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
-  &#9776;Filter
-</button>
+  <button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
+    &#9776;Filter
+  </button>
+
+  <div class="text-end">
+    <%= link_to 'Help', projects_public_help_path, class: "a-primary" %>
+  </div>
 
   <div class="text-center white-ray">
+
   <h1>Our Credits</h1>
   <br>
   <h3>projects we had fun working on</h3>
@@ -71,10 +79,6 @@
                 
               </div>
               <div class="modal-body text-center grey-ray">
-
-                  <strong>Description:</strong>
-                  <%= project.ProjectDescription %>
-                  <br>
 
                   <strong>Awards:</strong>
                   <% Awarded.where(ProjectID: project.id).find_each do |awarded| %>

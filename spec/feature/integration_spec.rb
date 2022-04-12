@@ -159,13 +159,8 @@ RSpec.describe 'Creating a project', type: :feature do
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
-    expect(page).to have_content('projectdescription2')
-    # expect(page).to have_content('2022')
-    # expect(page).to have_content('29')
-    # expect(page).to have_content('projectname2')
-    # expect(page).to have_link(href: 'http://projectlink2')
-    # expect(page).to have_content('projectowner2')
-    # expect(page).to have_no_content("projectname1")
+    expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
   end
 
   scenario 'filtering the correct projects by contribution' do
@@ -225,13 +220,8 @@ RSpec.describe 'Creating a project', type: :feature do
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
-    expect(page).to have_content('projectdescription2')
-    # expect(page).to have_content('2022')
-    # expect(page).to have_content('29')
-    # expect(page).to have_content('projectname2')
-    # expect(page).to have_link(href: 'http://projectlink2')
-    # expect(page).to have_content('projectowner2')
-    # expect(page).to have_no_content("projectname1")
+    expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
   end
 
   scenario 'filtering the correct projects by contribution and type' do
@@ -289,7 +279,7 @@ RSpec.describe 'Creating a project', type: :feature do
     select 1, :from => 'display_line[ComponentStartDate(3i)]'
     select 'projectname2', :from => 'display_line[Project_id]'
     select 'Mixing', :from => 'display_line[Contribution_id]'
-    click_on 'Create Display line'
+    click_on 'Create Project-Contribution Association'
 
     visit display_lines_path
     expect(page).to have_content('Mixing')
@@ -300,8 +290,8 @@ RSpec.describe 'Creating a project', type: :feature do
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
-    expect(page).to have_content('projectdescription2')
     expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
     expect(page).to have_content('Podcast')
   end
 end
@@ -346,7 +336,7 @@ RSpec.describe 'Creating a display line', type: :feature do
     select 29, :from => 'display_line[ComponentEndDate(3i)]'
     find('#display_line_Project_id').find(:xpath, 'option[2]').select_option
     find('#display_line_Contribution_id').find(:xpath, 'option[2]').select_option
-    click_on 'Create Display line'
+    click_on 'Create Project-Contribution Association'
     visit display_lines_path
     expect(page).to have_content('2017-01-30')
     expect(page).to have_content('2021-01-29')

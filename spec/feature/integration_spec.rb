@@ -289,7 +289,7 @@ RSpec.describe 'Creating a project', type: :feature do
     select 1, :from => 'display_line[ComponentStartDate(3i)]'
     select 'projectname2', :from => 'display_line[Project_id]'
     select 'Mixing', :from => 'display_line[Contribution_id]'
-    click_on 'Create Display line'
+    click_on 'Create Project-Contribution Association'
 
     visit display_lines_path
     expect(page).to have_content('Mixing')
@@ -346,7 +346,7 @@ RSpec.describe 'Creating a display line', type: :feature do
     select 29, :from => 'display_line[ComponentEndDate(3i)]'
     find('#display_line_Project_id').find(:xpath, 'option[2]').select_option
     find('#display_line_Contribution_id').find(:xpath, 'option[2]').select_option
-    click_on 'Create Display line'
+    click_on 'Create Project-Contribution Association'
     visit display_lines_path
     expect(page).to have_content('2017-01-30')
     expect(page).to have_content('2021-01-29')

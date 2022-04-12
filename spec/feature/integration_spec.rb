@@ -159,13 +159,8 @@ RSpec.describe 'Creating a project', type: :feature do
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
-    expect(page).to have_content('projectdescription2')
-    # expect(page).to have_content('2022')
-    # expect(page).to have_content('29')
-    # expect(page).to have_content('projectname2')
-    # expect(page).to have_link(href: 'http://projectlink2')
-    # expect(page).to have_content('projectowner2')
-    # expect(page).to have_no_content("projectname1")
+    expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
   end
 
   scenario 'filtering the correct projects by contribution' do
@@ -225,13 +220,8 @@ RSpec.describe 'Creating a project', type: :feature do
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
-    expect(page).to have_content('projectdescription2')
-    # expect(page).to have_content('2022')
-    # expect(page).to have_content('29')
-    # expect(page).to have_content('projectname2')
-    # expect(page).to have_link(href: 'http://projectlink2')
-    # expect(page).to have_content('projectowner2')
-    # expect(page).to have_no_content("projectname1")
+    expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
   end
 
   scenario 'filtering the correct projects by contribution and type' do
@@ -300,8 +290,8 @@ RSpec.describe 'Creating a project', type: :feature do
     page.check('search_multibox_podcast')
     click_on 'Search'
     find('#projectname2').click
-    expect(page).to have_content('projectdescription2')
     expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
     expect(page).to have_content('Podcast')
   end
 end

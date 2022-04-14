@@ -30,21 +30,23 @@
   </thead>
 
         <strong>Type</strong>
+        <p></p>
         <%= form_tag projects_path, :method => "get" do %>
         <% Type.all.each do |type| %>
-          <li>
-          <%= label_tag(:search, type.TypeName) %>
+          <p>
           <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
-          </li>
+          <%= label_tag(:search, type.TypeName) %>
+          </p>
         <% end %>
 
 
         <strong>Contribution</strong>
+        <p></p>
         <% Contribution.all.each do |cont| %>
-          <li>
-          <%= label_tag(:search, cont.ContributionType) %>
+          <p>
           <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
-          </li>
+          <%= label_tag(:search, cont.ContributionType) %>
+          </p>
         <% end %>
 
         <%= submit_tag("Search", :name => nil) %> <% end %>

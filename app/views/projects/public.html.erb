@@ -47,7 +47,7 @@
 
   <div class="text-center white-ray">
 
-  <h1>Our Credits</h1>
+  <h1>our credits</h1>
   <br>
   <h3>projects we had fun working on</h3>
   <br>
@@ -63,7 +63,7 @@
   <br><br>
 
 <div class="row row-cols-1 row-cols-md-6 g-4">
-    <% @projects.each do |project| %>
+    <% @projects.sort_by(&:ProjectEnd).each do |project| %>
         
         <!-- Modal -->
         <div class="modal fade" id="form-modal-<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -80,9 +80,11 @@
               </div>
               <div class="modal-body text-center grey-ray">
 
-                  <strong>Awards:</strong>
-                  <% Awarded.where(ProjectID: project.id).find_each do |awarded| %>
-                    <p><%= Award.find(awarded.AwardID).AwardName %></p>
+                  <strong>Project Cover:</strong>
+                  <% if project.ProjectCover.representable? %>
+                    <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
+                  <% else %>
+                    <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
                   <% end %>
                   <br>
 
@@ -94,6 +96,16 @@
 
                   <strong>Type:</strong>
                   <%= Type.find(project.TypeID).TypeName %>
+                  <br>
+
+                  <strong>Production Date:</strong>
+                  <%= project.ProjectEnd.to_s %>
+                  <br>
+
+                  <strong>Awards (if any):</strong>
+                  <% Awarded.where(ProjectID: project.id).find_each do |awarded| %>
+                    <p><%= Award.find(awarded.AwardID).AwardName %></p>
+                  <% end %>
                   <br>
 
                   <%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %> 

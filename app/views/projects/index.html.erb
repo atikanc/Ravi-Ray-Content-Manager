@@ -12,6 +12,7 @@
 <%= link_to "Help", projects_help_path %>
 <br>
 
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <table class="table">
@@ -29,25 +30,39 @@
   </thead>
 
         <strong>Type</strong>
+        <p></p>
         <%= form_tag projects_path, :method => "get" do %>
         <% Type.all.each do |type| %>
-          <li>
-          <%= label_tag(:search, type.TypeName) %>
+          <p>
           <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
-          </li>
+          <%= label_tag(:search, type.TypeName) %>
+          </p>
         <% end %>
 
 
         <strong>Contribution</strong>
+        <p></p>
         <% Contribution.all.each do |cont| %>
-          <li>
-          <%= label_tag(:search, cont.ContributionType) %>
+          <p>
           <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
-          </li>
+          <%= label_tag(:search, cont.ContributionType) %>
+          </p>
         <% end %>
 
         <%= submit_tag("Search", :name => nil) %> <% end %>
 
+  <br><br>
+  <%= link_to 'New Project', new_project_path %>
+  <br>
+  <%= link_to 'Types', types_path %>
+  <br>
+  <%= link_to 'Contributions', contributions_path %>
+  <br>
+  <%= link_to 'Awards', awards_path %>
+  <br>
+  <%= link_to 'Project Awards', awardeds_path %>
+  <br>
+  <%= link_to 'Project Contributions', display_lines_path %>
   <br><br>
 
   <tbody>
@@ -75,18 +90,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
-<br>
-<%= link_to 'Types', types_path %>
-<br>
-<%= link_to 'Contributions', contributions_path %>
-<br>
-<%= link_to 'Awards', awards_path %>
-<br>
-<%= link_to 'Project Awards', awardeds_path %>
-<br>
-<%= link_to 'Project Contributions', display_lines_path %>
 

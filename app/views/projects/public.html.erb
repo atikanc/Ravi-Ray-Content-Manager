@@ -63,7 +63,7 @@
   <br><br>
 
 <div class="row row-cols-1 row-cols-md-6 g-4">
-    <% @projects.sort_by(&:ProjectEnd).each do |project| %>
+    <% @projects.each do |project| %>
         
         <!-- Modal -->
         <div class="modal fade" id="form-modal-<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

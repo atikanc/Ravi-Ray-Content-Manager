@@ -9,14 +9,8 @@ def sign_in
 end
 
 RSpec.describe 'Creating a type', type: :feature do
-  before do 
-    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
-    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_admin]
-    visit root_path
-    # sign in and verify sign in
-    click_on('Sign in with Google')
-  end
   it 'valid inputs' do
+    sign_in
     visit new_type_path
     fill_in 'type[TypeName]', with: 'Music', visible: true
     click_on 'Create Type'
@@ -160,15 +154,13 @@ RSpec.describe 'Creating a project', type: :feature do
     click_on 'Create Project'
 
     #check filtering
-    visit projects_path
+    visit projects_public_path
+    click_on 'filterBtn'
     page.check('search_multibox_podcast')
     click_on 'Search'
-    expect(page).to have_content('2022')
-    expect(page).to have_content('29')
+    find('#projectname2').click
     expect(page).to have_content('projectname2')
-    expect(page).to have_link(href: 'http://projectlink2')
     expect(page).to have_content('projectowner2')
-    expect(page).to have_no_content("projectname1")
   end
 
   scenario 'filtering the correct projects by contribution' do
@@ -223,17 +215,13 @@ RSpec.describe 'Creating a project', type: :feature do
     select 1, :from => 'display_line[ComponentEndDate(3i)]'
     select 'projectname2', :from => 'display_line[Project_id]'
 
-
-    #what the hell is going on
-    visit projects_path
+    # filter by podcast types
+    visit projects_public_path
     page.check('search_multibox_podcast')
     click_on 'Search'
-    expect(page).to have_content('2022')
-    expect(page).to have_content('29')
+    find('#projectname2').click
     expect(page).to have_content('projectname2')
-    expect(page).to have_link(href: 'http://projectlink2')
     expect(page).to have_content('projectowner2')
-    expect(page).to have_no_content("projectname1")
   end
 
   scenario 'filtering the correct projects by contribution and type' do
@@ -250,7 +238,7 @@ RSpec.describe 'Creating a project', type: :feature do
 
     #Make contribution type
     visit new_contribution_path
-    fill_in 'contribution_ContributionType', with: 'hahaha'
+    fill_in 'contribution_ContributionType', with: 'Mixing'
     click_on 'Create Contribution'
 
     #Make the music project
@@ -285,25 +273,26 @@ RSpec.describe 'Creating a project', type: :feature do
 
     #create the display line
     visit new_display_line_path
-    fill_in 'display_line_ComponentContributed', with: "I am having a stroke rn"
+    fill_in 'display_line_ComponentContributed', with: "Music"
     select 2022, :from => 'display_line[ComponentStartDate(1i)]'
     select 'April', :from => 'display_line[ComponentStartDate(2i)]'
     select 1, :from => 'display_line[ComponentStartDate(3i)]'
     select 'projectname2', :from => 'display_line[Project_id]'
-    select 'hahaha', :from => 'display_line[Contribution_id]'
-    click_on 'Create Display line'
+    select 'Mixing', :from => 'display_line[Contribution_id]'
+    click_on 'Create Project-Contribution Association'
 
     visit display_lines_path
-    expect(page).to have_content('hahaha')
+    expect(page).to have_content('Mixing')
     expect(page).to have_content('projectname2')
 
-    visit projects_path
+    visit projects_public_path
+    page.check('search_multibox_mixing')
     page.check('search_multibox_podcast')
-    page.check('search_multibox_hahaha')
     click_on 'Search'
+    find('#projectname2').click
     expect(page).to have_content('projectname2')
+    expect(page).to have_content('projectowner2')
     expect(page).to have_content('Podcast')
-    expect(page).to have_no_content('projectname1')
   end
 end
 
@@ -347,13 +336,11 @@ RSpec.describe 'Creating a display line', type: :feature do
     select 29, :from => 'display_line[ComponentEndDate(3i)]'
     find('#display_line_Project_id').find(:xpath, 'option[2]').select_option
     find('#display_line_Contribution_id').find(:xpath, 'option[2]').select_option
-    click_on 'Create Display line'
+    click_on 'Create Project-Contribution Association'
     visit display_lines_path
-    # expect(page).to have_content('contributiontype')
     expect(page).to have_content('2017-01-30')
     expect(page).to have_content('2021-01-29')
     expect(page).to have_content('something1')
-    # expect(page).to have_content('projectname1')
   end
 end
 
@@ -367,4 +354,15 @@ RSpec.describe 'Creating a contribution type', type: :feature do
     expect(page).to have_content('Bao Type')
   end
 end
-  
+
+RSpec.describe 'Accessing projects index page', type: :feature do
+  scenario 'as an admin' do
+    sign_in
+    expect(page).to have_content('New Project')
+  end
+
+  scenario 'as a user' do
+    visit projects_path
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
+  end
+end

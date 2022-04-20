@@ -262,8 +262,3 @@ RSpec.describe Award, type: :model do
     expect(subject).to(be_valid)
   end
 end
-
-
-
-  
-  

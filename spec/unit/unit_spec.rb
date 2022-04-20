@@ -209,11 +209,7 @@ RSpec.describe DisplayLine, type: :model do
       expect(subject).to be_valid
     end
   
-    it 'is not valid without a component contributed' do
-      subject.ComponentContributed = nil
-      expect(subject).not_to be_valid
-    end
-
+   
     it 'is not valid without a component start date' do
       subject.ComponentStartDate = nil
       expect(subject).not_to be_valid

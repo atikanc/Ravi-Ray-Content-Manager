@@ -18,6 +18,7 @@ class Project < ApplicationRecord
   
 
   def self.search(search)
+    
     if search
       if search[:multibox].length > 0
         type_list = Array.new

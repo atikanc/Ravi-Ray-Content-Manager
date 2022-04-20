@@ -37,6 +37,11 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Create Project-Contribution Association"%>
+    <% if new_form %>
+      <%= form.submit "Create Project-Contribution Association"%>
+    <% else %>
+      <%= form.submit "Update Project-Contribution Association"%>
+    <%end%>
+    
   </div>
 <% end %>

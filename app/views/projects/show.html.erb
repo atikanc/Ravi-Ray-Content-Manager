@@ -46,7 +46,11 @@
   <br>
   <ul>
     <% @contrib.each do |con| %>
-      <li><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></li>
+      <% if con.ComponentContributed.blank? %>
+        <li><%= con.Contribution.ContributionType %></li>
+      <% else %>
+        <li><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></li>
+      <% end %>
     <% end %>
   </ul>
 </p>

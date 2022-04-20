@@ -21,9 +21,7 @@ This code has been run and tested on:
 - Docker - Download latest version at https://www.docker.com/products/docker-desktop
 - Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
 - Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-- (Optional) GitHub Desktop at https://desktop.github.com/
-- Amazon AWS S3 at https://aws.amazon.com/s3/
-- Google OAuth 2.0 at https://developers.google.com/identity/protocols/oauth2
+- GitHub Desktop at https://desktop.github.com/
 
 ## Installation
 
@@ -63,7 +61,6 @@ The application can be seen using a browser and navigating to http://localhost:3
 
 
 ## Environmental Variables/Files
-
 The following keys needed to be added to Heroku.
 
 General Environment.
@@ -86,16 +83,17 @@ CLIENT_ID: 'XXXX'
 CLIENT_SECRET: 'XXXX'
 ```
 
+
 ## Deployment
 
 1. Fork the project repository (https://github.com/cjnewman820/Ravi-Ray-Content-Manager) into your own GitHub account.
    - Any changes you have made to the source code when you downloaded the code can now be pushed to your repo.
-3. In Heroku, connect your GitHub Account to the Heroku Account (https://dashboard.heroku.com/account/applications).
-4. From the Heroku Dashboard Click the New button in the top right of your app list and select Create new pipeline.
+2. In Heroku, connect your GitHub Account to the Heroku Account (https://dashboard.heroku.com/account/applications).
+3. From the Heroku Dashboard Click the New button in the top right of your app list and select Create new pipeline.
    - Search for and connect to the Github repository that your forked to your account.
-5. Create a new app under production to deploy from the main branch.
-6. Configure the environment variables listed above.
-7. Once the application is built and released, it can be accessed via the Heroku Link.
+4. Create a new app under production to deploy from the main branch.
+5. Configure the environment variables listed above.
+6. Once the application is built and released, it can be accessed via the Heroku Link.
 
 ## CI/CD
 

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
+  skip_before_action :authenticate_admin!, only: [:public, :user_help]
 
   # GET /projects or /projects.json
   def index
@@ -27,7 +28,16 @@ class ProjectsController < ApplicationController
 
     @types = Type.all
     @contributions = Contribution.all.pluck(:ContributionType)
+    @awardeds = Awarded.all
+    @awards = Award.all
+    @contrib = DisplayLine.where(Project: @project)
 
+  end
+
+  def user_help
+  end
+
+  def admin_help
   end
 
   # GET /projects/1 or /projects/1.json

@@ -32,6 +32,10 @@
         <% end %>
 
         <%= submit_tag("Search", :name => nil) %> <% end %>
+
+        <%= form_tag projects_public_path, :method => "get" do %>
+          <%= submit_tag("Clear Search", :name => nil) %> 
+        <% end %>
   </div>
 </div>
 <div class="blue-background-ray">
@@ -90,7 +94,11 @@
 
                   <strong>Contributions:</strong>
                     <% DisplayLine.where(Project: project).each do |con| %>
-                      <p><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></p>
+                      <% if con.ComponentContributed.blank? %>
+                        <li><%= con.Contribution.ContributionType %></li>
+                      <% else %>
+                        <li><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></li>
+                      <% end %>
                     <% end %>
                   <br>
 

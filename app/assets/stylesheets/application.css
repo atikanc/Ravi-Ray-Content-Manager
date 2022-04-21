@@ -13,6 +13,78 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+    font-family: 'Josefin-Sans';
+    src: url('JosefinSans-Regular.ttf');
+ }
+
+ @font-face {
+    font-family: 'Open-Sans';
+    src: url('OpenSans-Regular.ttf');
+ }
+
+ .ray-1st-line {
+    -webkit-text-size-adjust: 100%;
+    overflow-wrap: break-word;
+    --sqs-site-gutter: 4vw;
+    --sqs-site-max-width: 1200px;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Josefin-Sans';
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0em;
+    text-transform: none;
+    line-height: 1.232;
+    font-size: calc((4 - 1) * 1.2vw + 1rem);
+    margin: 2rem 0;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: pre-wrap;
+ }
+
+ .ray-2nd-line {
+    -webkit-text-size-adjust: 100%;
+    --sqs-site-gutter: 4vw;
+    --sqs-site-max-width: 1200px;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Josefin-Sans';
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0em;
+    text-transform: none;
+    line-height: 1.3664;
+    font-size: calc((1.6 - 1) * 1.2vw + 1rem);
+    margin: 2rem 0;
+    color: #fff;
+    word-wrap: break-word;
+    margin-top: 0;
+    text-align: center;
+    white-space: pre-wrap;
+ }
+
+ .ray-3rd-line {
+    -webkit-text-size-adjust: 100%;
+    --sqs-site-gutter: 4vw;
+    --sqs-site-max-width: 1200px;
+    font-family: 'Open-Sans';
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0em;
+    text-transform: none;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    font-size: calc((1 - 1) * 1.2vw + 1rem);
+    margin: 1rem 0;
+    color: #fff;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: pre-wrap;
+ }
+
  .font-ray {
     font-family: 'Josefin Sans';
 }

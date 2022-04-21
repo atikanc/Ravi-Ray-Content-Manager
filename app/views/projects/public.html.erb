@@ -33,8 +33,10 @@
 
         <%= submit_tag("Search", :name => nil) %> <% end %>
 
+        <br>
+
         <%= form_tag projects_public_path, :method => "get" do %>
-          <%= submit_tag("Clear Search", :name => nil) %> 
+          <%= submit_tag("Clear Filters", :name => nil) %> 
         <% end %>
   </div>
 </div>
@@ -67,7 +69,7 @@
   <br><br>
 
 <div class="row row-cols-1 row-cols-md-6 g-4">
-    <% @projects.each do |project| %>
+    <% @projects.sort_by(&:ProjectEnd).reverse.each do |project| %>
         
         <!-- Modal -->
         <div class="modal fade" id="form-modal-<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

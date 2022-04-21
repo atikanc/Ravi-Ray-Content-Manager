@@ -41,14 +41,17 @@
   </div>
 </div>
 <div class="blue-background-ray">
+  <div style="display: inline">
+    <!-- Button to open the offcanvas sidebar -->
 
-<!-- Button to open the offcanvas sidebar -->
-  <button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
-    &#9776;Filter
-  </button>
+    <button class="btn-rounded btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
+      &#9776;Filter
+    </button>
+      
+    <a class="btn-rounded btn-dark btn-lg a-primary" href="<%= projects_public_help_path %>" style="float: right;"> 
+      Help
+    </a>
 
-  <div class="text-end">
-    <%= link_to 'Help', projects_public_help_path, class: "a-primary" %>
   </div>
 
   <div class="text-center white-ray">

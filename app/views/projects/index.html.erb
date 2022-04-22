@@ -32,24 +32,31 @@
         <strong>Type</strong>
         <p></p>
         <%= form_tag projects_path, :method => "get" do %>
-        <% Type.all.each do |type| %>
-          <p>
-          <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
-          <%= label_tag(:search, type.TypeName) %>
-          </p>
+          <% Type.all.each do |type| %>
+            <p>
+            <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
+            <%= label_tag(:search, type.TypeName) %>
+            </p>
+          <% end %>
+
+
+          <strong>Contribution</strong>
+          <p></p>
+          <% Contribution.all.each do |cont| %>
+            <p>
+            <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
+            <%= label_tag(:search, cont.ContributionType) %>
+            </p>
+          <% end %>
+
+          <%= submit_tag("Search", :name => nil) %> 
         <% end %>
 
+        <br>
 
-        <strong>Contribution</strong>
-        <p></p>
-        <% Contribution.all.each do |cont| %>
-          <p>
-          <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
-          <%= label_tag(:search, cont.ContributionType) %>
-          </p>
+        <%= form_tag projects_path, :method => "get" do %>
+          <%= submit_tag("Clear Filters", :name => nil) %> 
         <% end %>
-
-        <%= submit_tag("Search", :name => nil) %> <% end %>
 
   <br><br>
   <%= link_to 'New Project', new_project_path %>

@@ -1,4 +1,4 @@
-
+<body class="blue-background">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="../dist/css/bootstrap.offcanvas.min.css"/>
@@ -32,26 +32,35 @@
         <% end %>
 
         <%= submit_tag("Search", :name => nil) %> <% end %>
+
+        <br>
+
+        <%= form_tag projects_public_path, :method => "get" do %>
+          <%= submit_tag("Clear Filters", :name => nil) %> 
+        <% end %>
   </div>
 </div>
 <div class="blue-background-ray">
+  <div style="display: inline">
+    <!-- Button to open the offcanvas sidebar -->
 
-<!-- Button to open the offcanvas sidebar -->
-  <button class="btn btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
-    &#9776;Filter
-  </button>
+    <button class="btn-rounded btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
+      &#9776;Filter
+    </button>
+      
+    <a class="btn-rounded btn-dark btn-lg a-primary" href="<%= projects_public_help_path %>" style="float: right;"> 
+      Help
+    </a>
 
-  <div class="text-end">
-    <%= link_to 'Help', projects_public_help_path, class: "a-primary" %>
   </div>
 
   <div class="text-center white-ray">
 
-  <h1>our credits</h1>
+  <h1 class="ray-1st-line">our credits</h1>
   <br>
-  <h3>projects we had fun working on</h3>
-  <br>
-  <h4>links will open in a separate window</h4>
+  <h4 class="ray-2nd-line">projects we had fun working on</h4>
+  
+  <p class="ray-3rd-line">links will open in a separate window</p>
 
   <head>
   <style>
@@ -63,7 +72,7 @@
   <br><br>
 
 <div class="row row-cols-1 row-cols-md-6 g-4">
-    <% @projects.each do |project| %>
+    <% @projects.sort_by(&:ProjectEnd).reverse.each do |project| %>
         
         <!-- Modal -->
         <div class="modal fade" id="form-modal-<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,7 +99,11 @@
 
                   <strong>Contributions:</strong>
                     <% DisplayLine.where(Project: project).each do |con| %>
-                      <p><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></p>
+                      <% if con.ComponentContributed.blank? %>
+                        <li><%= con.Contribution.ContributionType %></li>
+                      <% else %>
+                        <li><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></li>
+                      <% end %>
                     <% end %>
                   <br>
 
@@ -135,6 +148,7 @@
     <% end %>
 </div>
 </div>
+</body>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

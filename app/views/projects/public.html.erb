@@ -89,7 +89,6 @@
               </div>
               <div class="modal-body text-center grey-ray">
 
-                  <strong>Project Cover:</strong>
                   <% if project.ProjectCover.representable? %>
                     <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
                   <% else %>
@@ -100,9 +99,9 @@
                   <strong>Contributions:</strong>
                     <% DisplayLine.where(Project: project).each do |con| %>
                       <% if con.ComponentContributed.blank? %>
-                        <li><%= con.Contribution.ContributionType %></li>
+                        <p><%= con.Contribution.ContributionType %></p>
                       <% else %>
-                        <li><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></li>
+                        <p><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></p>
                       <% end %>
                     <% end %>
                   <br>

@@ -73,7 +73,7 @@
   <br><br>
 
   <tbody>
-    <% @projects.each do |project| %>
+    <% @projects.sort_by(&:ProjectEnd).reverse.each do |project| %>
       <tr>
         <td>
           <% if project.ProjectCover.representable? %>

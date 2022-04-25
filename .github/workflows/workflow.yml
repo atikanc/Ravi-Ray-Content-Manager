@@ -4,6 +4,8 @@ env:
   POSTGRES_PASSWORD: password
   DATABASE_USER: postgres
   DATABASE_PASSWORD: password
+  ADMIN_EMAIL_ONE: ${{secrets.ADMIN_EMAIL_ONE}}
+  ADMIN_EMAIL_TWO: ${{secrets.ADMIN_EMAIL_TWO}}
 
 name: Rails tests
 on: [push, pull_request]

@@ -4,8 +4,8 @@ env:
   POSTGRES_PASSWORD: password
   DATABASE_USER: postgres
   DATABASE_PASSWORD: password
-  ADMIN_EMAIL_ONE: ${{secrets.ADMIN_EMAIL_ONE}}
-  ADMIN_EMAIL_TWO: ${{secrets.ADMIN_EMAIL_TWO}}
+  ADMIN_EMAIL_ONE: ${{env.ADMIN_EMAIL_ONE}}
+  ADMIN_EMAIL_TWO: ${{env.ADMIN_EMAIL_TWO}}
 
 name: Rails tests
 on: [push, pull_request]
@@ -42,8 +42,8 @@ jobs:
       - name: Run tests
         run: bundler exec rspec .
         env:
-          ADMIN_EMAIL_ONE: ${{secrets.ADMIN_EMAIL_ONE}}
-          ADMIN_EMAIL_TWO: ${{secrets.ADMIN_EMAIL_TWO}}
+          ADMIN_EMAIL_ONE: ${{env.ADMIN_EMAIL_ONE}}
+          ADMIN_EMAIL_TWO: ${{env.ADMIN_EMAIL_TWO}}
       - name: Run brakeman
         run: brakeman -o brakeman.txt
       - name: Run rubocop

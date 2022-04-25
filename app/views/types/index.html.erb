@@ -1,11 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+<head>
+  <style>
+    h1, tr, td {
+      text-align: center;
+    }
+  </style>
+</head>
 <h1>Types</h1>
 
-<table>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<br>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
+      <td>&nbsp;</td>
       <th>Icon</th>
       <th colspan="3"></th>
     </tr>
@@ -15,10 +26,11 @@
     <% @types.each do |type| %>
       <tr>
         <td><%= type.TypeName %></td>
+        <td>&nbsp;</td>
         <td><%= type.TypeIcon %></td>
         <td><%= link_to 'Show', type %></td>
         <td><%= link_to 'Edit', edit_type_path(type) %></td>
-        <td><%= link_to 'Destroy', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +39,5 @@
 <br>
 
 <%= link_to 'New Type', new_type_path %>
+<br>
 <%= link_to 'Back', projects_path %>

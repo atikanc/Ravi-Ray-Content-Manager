@@ -1,56 +1,156 @@
-<h1>Projects - Public View</h1>
-
-<head>
-  <style>
-  </style>
-</head>
+<body class="blue-background">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="../dist/css/bootstrap.offcanvas.min.css"/>
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start grey-background-ray nav-bar-width-ray white-ray" id="demo">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title">Filter</h1>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+              
+        <h4><strong>Type</strong></h4>
+        <p></p>
+        <%= form_tag projects_public_path, :method => "get" do %>
+        <% Type.all.each do |type| %>
+        <p>
+          <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
+          <%= label_tag(:search, type.TypeName) %>
+        </p>
+        <% end %>
 
 
-  <%= form_tag projects_public_path, :method => "get" do %>
-    <% Type.all.each do |type| %>
-      <li>
-      <%= label_tag(:search, type.TypeName) %>
-      <%= check_box "search", "multibox", {:multiple => true }, type.TypeName, nil  %>
-      </li>
-    <% end %>
-    <% Contribution.all.each do |cont| %>
-      <li>
-      <%= label_tag(:search, cont.ContributionType) %>
-      <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
-      </li>
-    <% end %>
-    <%= submit_tag("Search", :name => nil) %>
-  <% end %>
+        <h4><strong>Contribution</strong></h4>
+        <p></p>
+        <% Contribution.all.each do |cont| %>
+        <p>
+          <%= check_box "search", "multibox", {:multiple => true }, cont.ContributionType, nil  %>
+          <%= label_tag(:search, cont.ContributionType) %>
+        </p>
+        <% end %>
+
+        <%= submit_tag("Search", :name => nil) %> <% end %>
+
+        <br>
+
+        <%= form_tag projects_public_path, :method => "get" do %>
+          <%= submit_tag("Clear Filters", :name => nil) %> 
+        <% end %>
+  </div>
+</div>
+<div class="blue-background-ray">
+  <div style="display: inline">
+    <!-- Button to open the offcanvas sidebar -->
+
+    <button class="btn-rounded btn-dark btn-lg" data-bs-toggle="offcanvas" data-bs-target="#demo" id="filterBtn">
+      &#9776;Filter
+    </button>
+      
+    <a class="btn-rounded btn-dark btn-lg a-primary" href="<%= projects_public_help_path %>" style="float: right;"> 
+      Help
+    </a>
+
+  </div>
+
+  <div class="text-center white-ray">
+
+  <h1 class="ray-1st-line">our credits</h1>
+  <br>
+  <h4 class="ray-2nd-line">projects we had fun working on</h4>
+  
+  <p class="ray-3rd-line">links will open in a separate window</p>
+
+  <head>
+  <style>
+  </style>
+
+  </head>
+  </div>
 
   <br><br>
 
 <div class="row row-cols-1 row-cols-md-6 g-4">
-    <% @projects.each do |project| %>
-        <div class="col">
-            <div class="card h-100">
-                <% if project.ProjectCover.representable? %>
-                <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]), class: "card-img-top"%>
-                <% else %>
-                <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
-                <% end %>
+    <% @projects.sort_by(&:ProjectEnd).reverse.each do |project| %>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="form-modal-<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" id = "{{project.id}}">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title w-100" id="exampleModalLabel"> 
+                  <%= project.ProjectName %> 
+                  <br>
+                  <%= project.ProjectOwner %>
+                </h5>
+                
+                
+              </div>
+              <div class="modal-body text-center grey-ray">
 
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%= project.ProjectName %>
-                    </h5>
-                    <h6><%= Type.find(project.TypeID).TypeName %></h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <%= link_to 'More Info', project, :class => "btn btn-primary btn-rra" %>
-                    <%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank', class: 'btn btn-primary' %>
-                    </a>
-                </div>
+                  <% if project.ProjectCover.representable? %>
+                    <%= image_tag project.ProjectCover.representation(resize_to_limit: [100, 100]) %>
+                  <% else %>
+                    <%= image_tag "https://via.placeholder.com/100", alt: "Download file" %>
+                  <% end %>
+                  <br>
+
+                  <strong>Contributions:</strong>
+                    <% DisplayLine.where(Project: project).each do |con| %>
+                      <% if con.ComponentContributed.blank? %>
+                        <p><%= con.Contribution.ContributionType %></p>
+                      <% else %>
+                        <p><%= con.Contribution.ContributionType %> - <%= con.ComponentContributed %></p>
+                      <% end %>
+                    <% end %>
+                  <br>
+
+                  <strong>Type:</strong>
+                  <%= Type.find(project.TypeID).TypeName %>
+                  <br>
+
+                  <strong>Production Date:</strong>
+                  <%= project.ProjectEnd.to_s %>
+                  <br>
+
+                  <strong>Awards (if any):</strong>
+                  <% Awarded.where(ProjectID: project.id).find_each do |awarded| %>
+                    <p><%= Award.find(awarded.AwardID).AwardName %></p>
+                  <% end %>
+                  <br>
+
+                  <%= link_to "Link", project.ProjectLink, rel: 'noopener', target: '_blank' %> 
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col">
+            <div class="card h-100 transparent-ray border-none">
+
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#form-modal-<%= project.id %>" id="<%= project.ProjectName %>">
+                  <% if project.ProjectCover.representable? %>
+                  <%= image_tag project.ProjectCover.representation(resize_to_limit: [300, 300]), class: "card-img-top1" %>
+                  <% else %>
+                  <%= image_tag "https://via.placeholder.com/300", alt: "Download file", class: "card-img-top1" %>
+                  <% end %>
+                </button>
+
+                
             </div>
         </div>
     <% end %>
 </div>
+</div>
+</body>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

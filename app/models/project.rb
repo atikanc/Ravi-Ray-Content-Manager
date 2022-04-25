@@ -18,6 +18,7 @@ class Project < ApplicationRecord
   
 
   def self.search(search)
+    
     if search
       if search[:multibox].length > 0
         type_list = Array.new
@@ -27,15 +28,11 @@ class Project < ApplicationRecord
         search[:multibox].each do |single|
           project_type = Type.find_by(TypeName: single)
           if project_type
-            puts "I am putting #{single} in type list"
-            puts project_type.TypeName
             type_list.push(project_type)
           end
           
           project_type = Contribution.find_by(ContributionType: single)
           if project_type
-            puts "I am putting #{single} in contribution list"
-            puts project_type.ContributionType
             contribution_list.push(project_type)
           end
           
@@ -44,13 +41,10 @@ class Project < ApplicationRecord
         tids = Project.where(TypeID: type_list)
         pids = DisplayLine.where(Contribution: contribution_list).pluck(:Project_id)
         if (type_list.length > 0) && (contribution_list.length > 0)
-          puts "pids and tids"
           @projects = Project.where(id:pids).and(Project.where(TypeID: type_list))
         elsif (type_list.length > 0) && (contribution_list.length == 0)
-          puts "just tids"
           @projects = Project.where(TypeID: type_list)
         elsif (type_list.length == 0) && (contribution_list.length > 0)
-          puts "only pids"
           @projects = Project.where(id:pids)
         else
           @projects = Project.all

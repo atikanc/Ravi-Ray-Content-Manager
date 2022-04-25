@@ -1,7 +1,7 @@
 <%= form_with(model: display_line) do |form| %>
   <% if display_line.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(display_line.errors.count, "error") %> prohibited this display_line from being saved:</h2>
+      <h2><%= pluralize(display_line.errors.count, "error") %> prohibited this project-contribution association from being saved:</h2>
 
       <ul>
         <% display_line.errors.each do |error| %>
@@ -37,6 +37,11 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <% if new_form %>
+      <%= form.submit "Create Project-Contribution Association"%>
+    <% else %>
+      <%= form.submit "Update Project-Contribution Association"%>
+    <%end%>
+    
   </div>
 <% end %>

@@ -40,10 +40,10 @@ jobs:
         with:
           cmd: install
       - name: Run tests
-        run: bundler exec rspec .
         env:
-          ADMIN_EMAIL_ONE: ${{env.ADMIN_EMAIL_ONE}}
-          ADMIN_EMAIL_TWO: ${{env.ADMIN_EMAIL_TWO}}
+          ADMIN_EMAIL_ONE: ${{secrets.ADMIN_EMAIL_ONE}}
+          ADMIN_EMAIL_TWO: ${{secrets.ADMIN_EMAIL_TWO}}
+        run: bundler exec rspec .
       - name: Run brakeman
         run: brakeman -o brakeman.txt
       - name: Run rubocop

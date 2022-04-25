@@ -42,7 +42,8 @@ jobs:
       - name: Run tests
         env:
           ADMIN_EMAIL_ONE: ${{secrets.ADMIN_EMAIL_ONE}}
-          ADMIN_EMAIL_TWO: ${{secrets.ADMIN_EMAIL_TWO}}
+          ADMIN_EMAIL_TWO: ${{secrets.TEST_SECRET}}
+        run: echo ${{secrets.ADMIN_EMAIL_ONE}}
         run: bundler exec rspec .
       - name: Run brakeman
         run: brakeman -o brakeman.txt
